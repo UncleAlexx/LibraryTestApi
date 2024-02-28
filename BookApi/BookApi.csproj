@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>0186139e-0580-47a4-bfe7-048f90592676</UserSecretsId>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Dapper" Version="2.1.28" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
+		<PackageReference Include="MediatR" Version="12.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.2">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="BookApi.Application">
+	    <HintPath>..\BookApi.Application\bin\Debug\net8.0\BookApi.Application.dll</HintPath>
+	  </Reference>
+	  <Reference Include="BookApi.Domain">
+	    <HintPath>..\BookApi.Domain\bin\Debug\net8.0\BookApi.Domain.dll</HintPath>
+	  </Reference>
+	  <Reference Include="BookApi.Infrastructure">
+	    <HintPath>..\BookApi.Infrastructure\bin\Debug\net8.0\BookApi.Infrastructure.dll</HintPath>
+	  </Reference>
+	  <Reference Include="BookApi.Presentation">
+	    <HintPath>..\BookApi.Presentation\bin\Debug\net8.0\BookApi.Presentation.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+</Project>

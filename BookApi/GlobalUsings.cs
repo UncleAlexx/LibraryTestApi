@@ -1,0 +1,13 @@
+﻿global using Autoservice.Infrastructure.DependencyInjection;
+global using BookApi;
+global using BookApi.Application;
+global using BookApi.Presentation;
+global using Microsoft.Extensions.Options;
+global using System.Text.Json.Serialization;
+global using BookApi.Infrastructure.Authentication.Library;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.IdentityModel.Tokens;
+global using Microsoft.OpenApi.Models;
+global using System.Text;
+global using JwtBearerOptions = BookApi.Infrastructure.Authentication.Library.Jwt.JwtBearerOptions;
