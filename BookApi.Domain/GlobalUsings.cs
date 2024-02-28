@@ -1,0 +1,13 @@
+﻿global using BookApi.Domain.Book.Validation.Enums;
+global using BookApi.Domain.Book.Validation.Extensions;
+global using BookApi.Domain.Book.ValueObjects.Lending;
+global using BookApi.Domain.Book.ValueObjects.Return;
+global using BookApi.Domain.Book.ValueObjects.Stock;
+global using BookApi.Domain.Common.Models;
+global using BookApi.Domain.Common.Results.ResultsKind;
+global using System.Diagnostics.CodeAnalysis;
+global using System.Text.Json.Serialization;
+global using BookApi.Domain.Common.Results.Common;
+global using BookApi.Domain.Common.Results.Interfaces;
+global using FluentValidation.Results;
+global using System.Collections.ObjectModel;
