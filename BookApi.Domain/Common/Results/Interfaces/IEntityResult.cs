@@ -1,4 +1,4 @@
-﻿namespace BookApi.Domain.Common.Results.Interfaces;
+﻿namespace Library.Domain.Common.Results.Interfaces;
 
 public interface IEntityResult<T, T2> : IResult<T> where T2 : IEntityResult<T, T2>  
 {

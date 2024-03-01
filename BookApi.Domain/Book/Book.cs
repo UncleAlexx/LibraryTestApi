@@ -1,8 +1,6 @@
-﻿using BookApi.Domain.Book.Entities;
+﻿namespace Library.Domain.Book;
 
-namespace BookApi.Domain.Book;
-
-public class Book : AggregateRoot<BookIdObject> 
+public sealed class Book : AggregateRoot<BookIdObject> 
 {
     private Book(BookIdObject Id) : base(Id) { }
 
@@ -18,6 +16,7 @@ public class Book : AggregateRoot<BookIdObject>
         var lending = Lending.CreateWithValidation(lendingDate, returnDate, id.Value, lendingId); 
         lending.Entity.BookId = id;
         var entity = new Book(id) { Stock = stock.Entity, Lending = lending.Entity };
-        return stock.Successful && lending.Successful? EntityResult<Book>.Success(entity) : EntityResult<Book>.Failed(entity);
+        return stock.Successful && lending.Successful? EntityResult<Book>.Success(entity) : 
+            EntityResult<Book>.Failed(entity);
     }
 }

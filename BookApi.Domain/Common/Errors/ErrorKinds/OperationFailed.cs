@@ -1,8 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using BookApi.Domain.Common.Enums;
-using BookApi.Domain.Common.Errors.Bases;
-
-namespace BookApi.Domain.Common.Errors.ErrorKinds;
+﻿namespace Library.Domain.Common.Errors.ErrorKinds;
 
 public sealed class OperationFailed<T>(Operation operation, string criteria, Databases db, 
     [CallerArgumentExpression(nameof(criteria))] string criteriaName = "") : IError

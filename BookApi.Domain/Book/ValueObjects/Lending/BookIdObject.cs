@@ -1,12 +1,6 @@
-﻿using BookApi.Domain.Common.Models;
-using BookApi.Domain.Common.Results.Common;
-using BookApi.Domain.Common.Results.ResultsKind;
-using Microsoft.EntityFrameworkCore;
-using System.Runtime.CompilerServices;
+﻿namespace Library.Domain.Book.ValueObjects.Lending;
 
-namespace BookApi.Domain.Book.ValueObjects.Lending;
-
-public record BookIdObject : ValueObject<Guid, BookIdObject>
+public sealed record BookIdObject : ValueObject<Guid, BookIdObject>
 {
     private BookIdObject(Guid value) : base(value) => Value = value;
 

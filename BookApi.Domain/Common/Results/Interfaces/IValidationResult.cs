@@ -1,4 +1,4 @@
-﻿namespace BookApi.Domain.Common.Results.Interfaces;
+﻿namespace Library.Domain.Common.Results.Interfaces;
 
 public interface IValidationResult<T, T2> : IResult<T> where T2 : IValidationResult<T, T2>, IResult<T>
 {

@@ -1,13 +1,6 @@
-﻿using BookApi.Domain.Book.Validation;
-using BookApi.Domain.Book.Validation.Enums;
-using BookApi.Domain.Book.Validation.Extensions;
-using BookApi.Domain.Common.Models;
-using BookApi.Domain.Common.Results.ResultsKind;
+﻿namespace Library.Domain.Book.ValueObjects.Stock;
 
-namespace BookApi.Domain.Book.ValueObjects.Stock;
-
-
-public record IsbnObject : ValueObject<string, IsbnObject>
+public sealed record IsbnObject : ValueObject<string, IsbnObject>
 {
     private IsbnObject(string value) : base(value) => Value = value;
 

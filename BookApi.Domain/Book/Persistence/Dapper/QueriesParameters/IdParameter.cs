@@ -1,6 +1,4 @@
-﻿using BookApi.Domain.Common.Persistence.Dapper.Abstractions;
-
-namespace BookApi.Domain.Book.Persistence.Dapper.QueriesParameters;
+﻿namespace Library.Domain.Book.Persistence.Dapper.QueriesParameters;
 
 public sealed class IdParameter : QueryParameter<IdParameter>
 {

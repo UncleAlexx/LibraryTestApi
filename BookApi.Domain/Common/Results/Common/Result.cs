@@ -1,6 +1,4 @@
-﻿using BookApi.Domain.Common.Results.Interfaces;
-
-namespace BookApi.Domain.Common.Results.Common;
+﻿namespace Library.Domain.Common.Results.Common;
 
 public abstract class ResultBase<T>(bool succesful) : IResult<T>
 {

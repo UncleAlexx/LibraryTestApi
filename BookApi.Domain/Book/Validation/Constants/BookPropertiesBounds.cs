@@ -1,6 +1,4 @@
-﻿using BookApi.Domain.Common.Validation;
-
-namespace BookApi.Domain.Book.Validation.Constants;
+﻿namespace Library.Domain.Book.Validation.Constants;
 
 public readonly ref struct BookPropertiesBounds()
 {

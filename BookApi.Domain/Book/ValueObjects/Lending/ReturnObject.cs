@@ -1,10 +1,6 @@
-﻿using BookApi.Domain.Book.Validation.Constants;
-using BookApi.Domain.Common.Models;
-using BookApi.Domain.Common.Results.ResultsKind;
+﻿namespace Library.Domain.Book.ValueObjects.Lending;
 
-namespace BookApi.Domain.Book.ValueObjects.Return;
-
-public record ReturnDateObject : ValueObject<DateTime, ReturnDateObject>
+public sealed record ReturnDateObject : ValueObject<DateTime, ReturnDateObject>
 {
     private ReturnDateObject(DateTime value) : base(value) => Value = value;
 

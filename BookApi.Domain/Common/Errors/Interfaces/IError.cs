@@ -1,4 +1,4 @@
-﻿namespace BookApi.Domain.Common.Errors.Bases;
+﻿namespace Library.Domain.Common.Errors.Interfaces;
 
 public interface IError
 {

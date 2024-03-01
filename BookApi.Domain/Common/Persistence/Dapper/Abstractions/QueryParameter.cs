@@ -1,11 +1,9 @@
-﻿using System.Reflection;
-using System.Reflection.Emit;
-
-namespace BookApi.Domain.Common.Persistence.Dapper.Abstractions;
+﻿namespace Library.Domain.Common.Persistence.Dapper.Abstractions;
 
 public abstract class QueryParameter<T> where T : QueryParameter<T>
 {
-    private static readonly ConstructorInfo _ctorInfo = typeof(T).GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, [])!;
+    private static readonly ConstructorInfo _ctorInfo = typeof(T).
+        GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, [])!;
 
     static QueryParameter()
     {

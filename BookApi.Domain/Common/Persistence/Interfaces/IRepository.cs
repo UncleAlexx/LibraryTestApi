@@ -1,13 +1,3 @@
-﻿using BookApi.Domain.Book.ValueObjects.Stock;
-using BookApi.Domain.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Library.Domain.Common.Persistence.Interfaces;
 
-namespace BookApi.Domain.Common.Persistence.Interfaces;
-
-public interface IRepository<T> 
-{
-}
+public interface IRepository<T>;

@@ -1,9 +1,6 @@
-﻿using BookApi.Domain.Common.Models;
-using BookApi.Domain.Common.Results.ResultsKind;
+﻿namespace Library.Domain.Book.ValueObjects.Stock;
 
-namespace BookApi.Domain.Book.ValueObjects.Stock;
-
-public record IdObject : ValueObject<Guid, IdObject>
+public sealed record IdObject : ValueObject<Guid, IdObject>
 {
     private IdObject(Guid value) : base(value) => Value = value;
 

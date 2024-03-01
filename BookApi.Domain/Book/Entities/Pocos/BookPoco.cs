@@ -1,4 +1,4 @@
-﻿namespace BookApi.Domain.Book.Entities.Pocos;
+﻿namespace Library.Domain.Book.Entities.Pocos;
 
 public readonly record struct BookPoco
 {

@@ -1,12 +1,11 @@
-﻿using BookApi.Domain.Common.Interfaces;
+﻿namespace Library.Domain.Common.Results.ResultsKind;
 
-namespace BookApi.Domain.Common.Results.ResultsKind;
-
-public  class MessageResult<T> : ResultBase<T>, IMessageResult<T, MessageResult<T>>
+public  sealed class MessageResult<T> : ResultBase<T>, IMessageResult<T, MessageResult<T>>
 {
     private MessageResult(T entity) : base(true) => Entity = entity;
 
-    private MessageResult(string message, ushort operationCode) : base(false) => (Message, OperationCode) = (message, operationCode);
+    private MessageResult(string message, ushort operationCode) : base(false) => 
+        (Message, OperationCode) = (message, operationCode);
 
     public string? Message { get; init; }
 

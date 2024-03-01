@@ -1,4 +1,4 @@
-﻿namespace BookApi.Domain.Book.Validation.Enums;
+﻿namespace Library.Domain.Book.Validation.Enums;
 
 public enum BookPropertiesNames : byte
 {

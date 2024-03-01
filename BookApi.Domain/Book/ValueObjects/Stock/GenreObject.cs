@@ -1,12 +1,6 @@
-﻿using BookApi.Domain.Book.Validation;
-using BookApi.Domain.Common.Models;
-using BookApi.Domain.Common.Results.ResultsKind;
-using System.Runtime.CompilerServices;
+﻿namespace Library.Domain.Book.ValueObjects.Stock;
 
-namespace BookApi.Domain.Book.ValueObjects.Stock;
-
-
-public record GenreObject : ValueObject<string, GenreObject>
+public sealed record GenreObject : ValueObject<string, GenreObject>
 {
     private GenreObject(string value) : base(value) => Value = value;
 

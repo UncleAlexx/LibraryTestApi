@@ -1,9 +1,6 @@
-﻿using BookApi.Domain.Common.Models;
-using BookApi.Domain.Common.Results.ResultsKind;
+﻿namespace Library.Domain.Book.ValueObjects.Stock;
 
-namespace BookApi.Domain.Book.ValueObjects.Stock;
-
-public record AuthorObject : ValueObject<string, AuthorObject>
+public sealed record AuthorObject : ValueObject<string, AuthorObject>
 {
     private AuthorObject(string value) : base(value) => Value = value;
 

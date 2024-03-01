@@ -1,9 +1,6 @@
-﻿using System.ComponentModel;
-using BookApi.Domain.Common.Persistence.Dapper.Abstractions;
+﻿namespace Library.Domain.Book.Persistence.Dapper.QueriesParameters;
 
-namespace BookApi.Domain.Book.Persistence.Dapper.QueriesParameters;
-
-public class BookIdParameter : QueryParameter<BookIdParameter>
+public sealed class BookIdParameter : QueryParameter<BookIdParameter>
 {
     public Guid? BookId { get; set; }
 

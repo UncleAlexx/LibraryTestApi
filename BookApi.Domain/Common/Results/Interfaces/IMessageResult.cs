@@ -1,4 +1,4 @@
-﻿namespace BookApi.Domain.Common.Interfaces;
+﻿namespace Library.Domain.Common.Results.Interfaces;
 
 public interface IMessageResult <T, T2> : IResult<T> where T2 : IMessageResult<T, T2>
 {

@@ -1,4 +1,4 @@
-﻿namespace BookApi.Domain.Common.Results.ResultsKind;
+﻿namespace Library.Domain.Common.Results.ResultsKind;
 
 public sealed class EntityResult<T> : ResultBase<T>, IEntityResult<T, EntityResult<T>>
 {

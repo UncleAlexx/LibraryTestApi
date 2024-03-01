@@ -1,4 +1,4 @@
-﻿namespace BookApi.Domain.Common.Results.Interfaces;
+﻿namespace Library.Domain.Common.Results.Interfaces;
 
 public interface IResult<T2>
 {
