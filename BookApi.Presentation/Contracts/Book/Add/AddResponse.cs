@@ -1,4 +1,4 @@
-﻿
-using BookApi.Presentation.Contracts.Book.Common.Bases;
+﻿namespace Library.Presentation.Contracts.Book.Add;
 
-internal record AddResponse<T>(DateTime Date, string Route, T Inserted, ushort Code=200) : ResponseBase<T>(Date, Route, Code);
+internal sealed record AddResponse<T>(DateTime Date, string Route, T Inserted, ushort Code = 200) : 
+    ResponseBase<T>(Date, Route, Code);

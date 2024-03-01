@@ -1,26 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using System.Diagnostics;
-using BookApi.Domain.Book;
-using Autoservice.Presentation;
-using BookApi.Presentation.Models.Common.Extensions;
-using BookApi.Presentation.Contracts.Book.Common;
-using BookApi.Application.Book.Commands.Update;
-using BookApi.Application.Book.Commands.Remove;
-using BookApi.Application.Book.Commands.Add;
-using BookApi.Application.Book.Queries.GetAll;
-using BookApi.Application.Book.Queries.GetById;
-using BookApi.Application.Book.Queries.GetByIsbn;
-using BookApi.Presentation.Contracts.Book.Delete;
-using BookApi.Presentation.Models.Common.Constants.Enums;
-using BookApi.Presentation.Contracts.Book.Add;
-using BookApi.Presentation.Contracts.Book.Common.Mappers;
-
-namespace BookApi.Presentation.Models;
+﻿namespace Library.Presentation.Models;
 
 public static class BookModel
 {

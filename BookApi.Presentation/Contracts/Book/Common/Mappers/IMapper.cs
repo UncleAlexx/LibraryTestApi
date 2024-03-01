@@ -1,8 +1,4 @@
-﻿using BookApi.Domain.Book.Entities.Pocos;
-using BookApi.Presentation.Contracts.Book.Add;
-using BookApi.Presentation.Contracts.Book.Update;
-
-namespace BookApi.Presentation.Contracts.Book.Common.Mappers;
+﻿namespace Library.Presentation.Contracts.Book.Common.Mappers;
 
 internal interface IBookMapper
 {

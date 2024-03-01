@@ -1,10 +1,4 @@
-﻿using BookApi.Presentation.Contracts.Book.Common;
-using BookApi.Presentation.Contracts.Book.Common.Mappers;
-using BookApi.Presentation.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace BookApi.Presentation;
+﻿namespace Library.Presentation;
 
 public static class DependencyInjection
 {

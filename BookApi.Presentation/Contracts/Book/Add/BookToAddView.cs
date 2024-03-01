@@ -1,4 +1,4 @@
-﻿namespace BookApi.Presentation.Contracts.Book.Add;
+﻿namespace Library.Presentation.Contracts.Book.Add;
 
 public readonly record struct BookToAddView
 {

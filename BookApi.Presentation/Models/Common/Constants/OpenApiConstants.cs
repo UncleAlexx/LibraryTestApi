@@ -1,4 +1,4 @@
-﻿namespace BookApi.Presentation.Models.Common.Extensions;
+﻿namespace Library.Presentation.Models.Common.Constants;
 
 internal static class OpenApiConstants
 {

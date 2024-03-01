@@ -1,15 +1,6 @@
-﻿
-using BookApi.Application.Common.Abstractions.Requests;
-using BookApi.Domain.Common.Results.Interfaces;
-using BookApi.Domain.Common.Results.ResultsKind;
-using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using Library.Domain.Common.Results.ResultsKind;
 
-namespace Autoservice.Presentation;
+namespace Library.Presentation.Models.Common.Extensions;
 
 internal static partial class EntityEndpointsFactory
 {

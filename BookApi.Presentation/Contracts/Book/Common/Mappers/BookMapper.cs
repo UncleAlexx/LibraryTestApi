@@ -1,10 +1,4 @@
-﻿using BookApi.Domain.Book.Entities.Pocos;
-using BookApi.Presentation.Contracts.Book.Add;
-using BookApi.Presentation.Contracts.Book.Common.Mappers;
-using BookApi.Presentation.Contracts.Book.Update;
-using Riok.Mapperly.Abstractions;
-
-namespace BookApi.Presentation.Contracts.Book.Common;
+﻿namespace Library.Presentation.Contracts.Book.Common.Mappers;
 
 [Mapper]
 internal partial class BookMapper : IBookMapper

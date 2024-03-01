@@ -1,4 +1,4 @@
-﻿namespace BookApi.Presentation.Models.Common.Constants.Enums;
+﻿namespace Library.Presentation.Models.Common.Constants.Enums;
 
 internal enum MainGroupNames : byte
 {

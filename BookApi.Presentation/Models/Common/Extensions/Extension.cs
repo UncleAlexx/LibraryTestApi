@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-
-namespace BookApi.Presentation.Models.Common.Extensions;
+﻿namespace Library.Presentation.Models.Common.Extensions;
 
 internal static class RouteHandlerBuilderExtensions
 {

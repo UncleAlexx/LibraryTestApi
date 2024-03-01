@@ -1,9 +1,4 @@
-﻿using BookApi.Presentation.Models.Common.Constants;
-using BookApi.Presentation.Models.Common.Constants.Enums;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
-namespace BookApi.Presentation.Models.Common.Extensions;
+﻿namespace Library.Presentation.Models.Common.Extensions;
 
 internal static class OpenApiBuilder
 {
