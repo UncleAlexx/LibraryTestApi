@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application.Book.Commands.Add;
+﻿namespace Library.Application.Book.Commands.Add;
 
 public sealed class AddHandler(IBookRepository repository) : ICommandHandler<Add, BookView, IResult<BookView>>
 {

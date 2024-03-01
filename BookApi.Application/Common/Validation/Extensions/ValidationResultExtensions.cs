@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application.Common.Validation.Extensions;
+﻿namespace Library.Application.Common.Validation.Extensions;
 
 internal static class ValidationResultExtensions
 {
@@ -14,7 +14,7 @@ internal static class ValidationResultExtensions
         {
             return await onSuccess();
         }
-        catch(Exception e)
+        catch
         {
             return instance;
         }

@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application.Login;
+﻿namespace Library.Application.Login;
 
 public record JwtOptions
 {

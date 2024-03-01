@@ -1,3 +1,4 @@
-﻿namespace BookApi.Application.Login.Queries;
+﻿namespace Library.Application.Login.Queries;
 
-public sealed record Login(string Name, string Email, string Password, string Secret) : IQuery<string, MessageResult<string>>;
+public sealed record Login(string Name, string Email, string Password, string Secret) : 
+    IQuery<string, MessageResult<string>>;

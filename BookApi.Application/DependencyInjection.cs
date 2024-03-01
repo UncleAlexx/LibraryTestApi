@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application;
+﻿namespace Library.Application;
 
 public static class DependencyInjection
 {

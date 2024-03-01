@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application.Book.Commands.Remove;
+﻿namespace Library.Application.Book.Commands.Remove;
 
 public sealed class RemoveHandler(IBookRepository repository) :
     ICommandHandler<Remove, BookView, IResult<BookView>>

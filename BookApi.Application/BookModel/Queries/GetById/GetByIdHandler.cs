@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application.Book.Queries.GetById;
+﻿namespace Library.Application.Book.Queries.GetById;
 
 public sealed class GetByIdHandler(IBookRepository repository) : IQueryHandler<GetById, BookView, IResult<BookView>>
 {

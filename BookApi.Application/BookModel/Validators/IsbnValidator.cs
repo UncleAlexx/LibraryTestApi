@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application.BookModel.Validators;
+﻿namespace Library.Application.Book.Validators;
 
 internal sealed class IsbnValidator : AbstractValidator<IsbnObject>
 {

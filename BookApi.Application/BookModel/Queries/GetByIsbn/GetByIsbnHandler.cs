@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application.Book.Queries.GetByIsbn;
+﻿namespace Library.Application.Book.Queries.GetByIsbn;
 
 public sealed class GetByIsbnHandler(IBookRepository repository) :
     IQueryHandler<GetByIsbn, BookView, IResult<BookView>>

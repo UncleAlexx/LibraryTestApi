@@ -1,6 +1,4 @@
-﻿
-
-namespace BookApi.Application.BookModel.Behaviors;
+﻿namespace Library.Application.BookModel.Behaviors;
 
 public class IsbnValidationBehavior<TRequest, TResponse>(IValidator<IsbnObject> validator) : IPipelineBehavior<TRequest, IResult<BookView>>
     where TRequest : IIsbnValidatable

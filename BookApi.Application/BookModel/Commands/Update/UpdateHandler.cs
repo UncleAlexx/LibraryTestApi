@@ -1,5 +1,4 @@
-﻿using BookApi.Application.Common.Abstractions.Handlers;
-namespace BookApi.Application.Book.Commands.Update;
+﻿namespace Library.Application.Book.Commands.Update;
 
 public sealed class UpdateHandler(IBookRepository repository) : ICommandHandler<Update, BookView, IResult<BookView>>
 {

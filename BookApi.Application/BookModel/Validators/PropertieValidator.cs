@@ -1,11 +1,4 @@
-﻿using FluentValidation;
-using BookApi.Application.Validators.Extensions.Book;
-using BookApi.Application.BookModel.Validation.Constants;
-using BookApi.Domain.Book.Validation.Extensions;
-using BookApi.Domain.Book.Validation.Enums;
-using BookApi.Domain.Book.Entities.Pocos;
-
-namespace BookApi.Application.BookModel.Validators;
+﻿namespace Library.Application.Book.Validators;
 
 internal sealed class PropertiesValidator : AbstractValidator<BookView>
 {

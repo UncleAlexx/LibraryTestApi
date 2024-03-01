@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application.Login.Queries;
+﻿namespace Library.Application.Login.Queries;
 
 public sealed class LoginHandler(IValidator<BookView> validator, JwtTokenFactory login) : IQueryHandler<Login, string, MessageResult<string>>
 {

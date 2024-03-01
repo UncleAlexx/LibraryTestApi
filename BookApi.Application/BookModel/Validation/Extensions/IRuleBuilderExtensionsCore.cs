@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application.Validators.Extensions.Book;
+﻿namespace Library.Application.Book.Validation.Extensions;
 
 internal static partial class IRuleBuilderExtensions
 {

@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application.BookModel.Behaviors;
+﻿namespace Library.Application.BookModel.Behaviors;
 
 public class PersistenceBehavior<T, TRequest>(IUnitOfWork unitOfWork) : IPipelineBehavior<T, IResult<BookView>> where T : ICommand<BookView, IResult<BookView>>
 {

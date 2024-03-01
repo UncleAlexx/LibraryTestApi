@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application.BookModel.Behaviors;
+﻿namespace Library.Application.BookModel.Behaviors;
 
 internal class ErrorBehavior<TRequest, T> : IPipelineBehavior<TRequest, IResult<BookView>> where TRequest : IValidatableRequest
 {

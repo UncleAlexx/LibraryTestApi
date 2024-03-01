@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application.BookModel.Behaviors;
+﻿namespace Library.Application.BookModel.Behaviors;
 
 public class IdValidationBehavior<TRequest, TResponse>(IValidator<IdObject> validator) : IPipelineBehavior<TRequest, IResult<BookView>> where TRequest : IIdValidatable
 {

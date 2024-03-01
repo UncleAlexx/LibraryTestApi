@@ -1,6 +1,4 @@
-﻿using BookApi.Domain.Common.Interfaces;
-
-namespace BookApi.Application.Book.Queries.GetAll;
+﻿namespace Library.Application.Book.Queries.GetAll;
 
 public sealed class GetAllHandler(IBookRepository repository) :
     IEnumerableQueryHandler<GetAll, BookView, IResult<IEnumerable<BookView>>>
