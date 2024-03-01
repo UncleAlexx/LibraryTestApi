@@ -1,12 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using BookApi.Domain.Book.ValueObjects.Lending;
-using BookApi.Domain.Book.ValueObjects.Return;
-using BookApi.Domain.Book.ValueObjects.Stock;
-using BookApi.Domain.Book.Entities;
-using BookApi.Domain.Common.Models;
-using static Dapper.SqlMapper;
-
-namespace BookApi.Infrastructure.Book.Persistence.Library;
+﻿namespace Library.Infrastructure.Book.Persistence.Library;
 
 public class LibraryContext(DbContextOptions<LibraryContext> options) : DbContext(options)
 {

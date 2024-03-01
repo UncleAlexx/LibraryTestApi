@@ -1,15 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Data.SqlClient;
-using BookApi.Infrastructure.Common;
-using BookApi.Infrastructure.Authentication.Library.Jwt;
-using BookApi.Infrastructure.Book.Persistence.Enums;
-using BookApi.Infrastructure.Book.Persistence.Library;
-using BookApi.Infrastructure.Book.Persistence.Repositories;
-using BookApi.Infrastructure.Book.Persistence.Constants.Common;
-using Microsoft.EntityFrameworkCore;
-
-namespace Autoservice.Infrastructure.DependencyInjection;
+﻿namespace Autoservice.Infrastructure;
 
 public static class DependencyInjection
 {

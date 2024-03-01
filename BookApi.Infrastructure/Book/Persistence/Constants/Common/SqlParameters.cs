@@ -1,7 +1,4 @@
-﻿using BookApi.Infrastructure.Common;
-using Microsoft.Extensions.Configuration;
-
-namespace BookApi.Infrastructure.Book.Persistence.Constants.Common;
+﻿namespace Library.Infrastructure.Book.Persistence.Constants.Common;
 
 internal static class SqlParameters
 {
@@ -12,5 +9,6 @@ internal static class SqlParameters
     /// </summary>
     internal readonly static string? LibraryConnectionString;
 
-    static SqlParameters() => LibraryConnectionString = ConfigDecorator.Config?.GetConnectionString(LibraryConnectionStringKey) ?? "";
+    static SqlParameters() => LibraryConnectionString = 
+        ConfigDecorator.Config?.GetConnectionString(LibraryConnectionStringKey) ?? "";
 }

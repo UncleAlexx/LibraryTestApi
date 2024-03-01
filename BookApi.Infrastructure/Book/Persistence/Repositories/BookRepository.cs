@@ -1,14 +1,4 @@
-﻿using BookApi.Domain.Book.Entities.Pocos;
-using BookApi.Domain.Book.Persistence.Dapper.QueriesParameters;
-using BookApi.Domain.Book.ValueObjects.Stock;
-using BookApi.Infrastructure.Book.Persistence.Constants.Library;
-using BookApi.Infrastructure.Book.Persistence.Enums;
-using BookApi.Infrastructure.Book.Persistence.Library;
-using Dapper;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace BookApi.Infrastructure.Book.Persistence.Repositories;
+﻿namespace Library.Infrastructure.Book.Persistence.Repositories;
 
 public sealed class BookRepository(LibraryContext context,
     [FromKeyedServices(Databases.Library)] SqlConnection connection) : IBookRepository

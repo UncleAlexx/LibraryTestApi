@@ -1,4 +1,4 @@
-﻿namespace BookApi.Infrastructure.Book.Persistence.Constants.Library;
+﻿namespace Library.Infrastructure.Book.Persistence.Constants.Library;
 
 internal class SqlQueries
 {

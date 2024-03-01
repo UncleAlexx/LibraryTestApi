@@ -1,13 +1,5 @@
-﻿using Library.Infrastructure.Authentication.Library;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.Diagnostics;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using System.Web;
+﻿namespace Library.Infrastructure.Login.Library.Jwt;
 
-namespace BookApi.Infrastructure.Authentication.Library.Jwt;
 public sealed class JwtTokenFactory
 {
     private readonly SigningCredentials _signingCredentials;

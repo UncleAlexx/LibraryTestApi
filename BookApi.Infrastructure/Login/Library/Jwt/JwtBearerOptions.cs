@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
-
-namespace BookApi.Infrastructure.Authentication.Library.Jwt;
+﻿namespace Library.Infrastructure.Login.Library.Jwt;
 
 public sealed class JwtBearerOptions
 {

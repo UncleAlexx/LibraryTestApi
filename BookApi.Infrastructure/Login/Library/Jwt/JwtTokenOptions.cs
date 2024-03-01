@@ -1,8 +1,4 @@
-﻿
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-
-namespace Library.Infrastructure.Authentication.Library;
+﻿namespace Library.Infrastructure.Login.Library.Jwt;
 
 internal record struct JwtTokenOptions(SigningCredentials SigningCredentials, string ValidIssuer, string ValidAudience, Claim[] Claims)
 {
