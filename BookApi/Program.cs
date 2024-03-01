@@ -1,8 +1,11 @@
+using Library.Infrastructure.Login.Library.Jwt;
+
 var builder = WebApplication.CreateBuilder(args); 
 builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
 {
     options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
+
 builder.Configuration.AddUserSecrets<Program>();
 builder.Services.AddSecurityScheme();
 builder.Services.AddInfrastructure(builder.Configuration);
