@@ -1,10 +1,16 @@
 ﻿namespace Library.Domain.Book.ValueObjects.Stock;
 
-public sealed record IsbnObject : ValueObject<string, IsbnObject>
+public sealed partial class IsbnObject : StringObject<IsbnObject>
 {
-    private IsbnObject(string value) : base(value) => Value = value;
+    private IsbnObject(in string value, in bool success) : base(value, success) 
+        => ErrorMessage = ValidationMessages.IsbnMessage;
+    [JsonIgnore] 
+    public override Bounds<int> Bounds { get; } = new(17, 17);
+    [JsonIgnore]
+    public override string ErrorMessage { get; init; }
 
-    public static  EntityResult<IsbnObject> Create(string value) =>
-        value is not null or "" && BookPropertiesNames.Isbn.IsMatch(value!) ?
-        EntityResult<IsbnObject>.Success(new(value)) : EntityResult<IsbnObject>.Failed(new(value));
+    public static new string PropertyName { get; } = "Isbn";
+
+    [GeneratedRegex(@"^\d{3}-\d-\d{2}-\d{6}-\d$")]
+    public override sealed partial Regex Pattern();
 }

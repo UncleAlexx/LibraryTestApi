@@ -1,10 +1,8 @@
 ﻿namespace Library.Domain.Book.ValueObjects.Lending;
 
-public sealed record BookIdObject : ValueObject<Guid, BookIdObject>
+public sealed class BookIdObject : GuidObject<BookIdObject>
 {
-    private BookIdObject(Guid value) : base(value) => Value = value;
+    private BookIdObject(in Guid value) : base(value) { }
 
-    public static BookIdObject Create(Guid value) => new(value);
-
-    public static BookIdObject CreateUnique() => new(Guid.NewGuid());
+    public static new string PropertyName { get; } = "BookId";
 }

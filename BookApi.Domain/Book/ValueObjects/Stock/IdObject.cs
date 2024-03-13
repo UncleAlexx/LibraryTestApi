@@ -1,10 +1,8 @@
 ﻿namespace Library.Domain.Book.ValueObjects.Stock;
 
-public sealed record IdObject : ValueObject<Guid, IdObject>
+public sealed class IdObject : GuidObject<IdObject>
 {
-    private IdObject(Guid value) : base(value) => Value = value;
+    private IdObject(in Guid value) : base(value) { }
 
-    public static IdObject Create(Guid value) => new(value);
-
-    public static IdObject CreateUnique() => new(Guid.NewGuid());
+    public static new string PropertyName { get; } = "Id";
 }

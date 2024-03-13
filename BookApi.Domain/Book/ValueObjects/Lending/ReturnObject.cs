@@ -1,11 +1,14 @@
 ﻿namespace Library.Domain.Book.ValueObjects.Lending;
 
-public sealed record ReturnDateObject : ValueObject<DateTime, ReturnDateObject>
+public sealed class ReturnDateObject : DateObject<ReturnDateObject>
 {
-    private ReturnDateObject(DateTime value) : base(value) => Value = value;
+    private ReturnDateObject(in DateTime value, in bool success = true) : base(value, success) =>
+        ErrorMessage = ValidationMessages.ReturnMessage;
+    
+    [JsonIgnore]
+    public override sealed Bounds<DateTime> Bounds { get; } = new Bounds<DateTime>(new(2000, 1, 1), new(2099, 12, 31));
+    [JsonIgnore]
+    public override string ErrorMessage { get; init; }
 
-    public static EntityResult<ReturnDateObject> Create(DateTime value) => 
-        value >= BookPropertiesBounds.Return.Min && value <= BookPropertiesBounds.Return.Max? 
-        EntityResult<ReturnDateObject>.Success(new(value)) :
-        EntityResult<ReturnDateObject>.Failed(new(value));
+    public static new string PropertyName { get; } = "ReturnDate";
 }
