@@ -1,3 +1,3 @@
 ﻿namespace Library.Application.Book.Commands.Add;
 
-public sealed record Add(BookPoco Book) : ICommand<BookView, IResult<BookView>>, IBookValidatable;
+internal sealed record Add(in BookPoco Book) : ICommand<BookView, IResult<BookView>>, IBookValidatable;
