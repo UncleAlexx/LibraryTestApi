@@ -1,3 +1,3 @@
 ﻿namespace Library.Application.Book.Queries.GetByIsbn;
 
-public sealed record GetByIsbn(string Isbn) : IQuery<BookView, IResult<BookView>>, IIsbnValidatable;
+internal sealed record GetByIsbn(in string Isbn) : IQuery<BookView, IResult<BookView>>, IIsbnValidatable;
