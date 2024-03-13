@@ -1,6 +1,6 @@
 ﻿namespace Library.Application.Common.Abstractions.ValidatableRequests;
 
-public interface IIsbnValidatable : IValidatableRequest
+internal interface IIsbnValidatable : IValidatableRequest
 {
     string Isbn { get; }
 }
