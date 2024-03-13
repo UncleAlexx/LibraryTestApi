@@ -1,4 +1,4 @@
 ﻿namespace Library.Presentation.Contracts.Book.Common;
 
-internal sealed record EntitiesResponse<T>(DateTime Date, string Route, IEnumerable<T> Entity, ushort Code = 200) : 
-    ResponseBase<T>(Date, Route, Code);
+internal sealed record EntitiesResponse<TEntity>(DateTime Date, string Route, IEnumerable<TEntity> Entity, ushort Code = 200) : 
+    ResponseBase<TEntity>(Date, Route, Code);
