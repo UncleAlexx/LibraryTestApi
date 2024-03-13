@@ -1,15 +1,12 @@
-﻿using BookApi.Domain.Book.ValueObjects.Stock;
-using System.Reflection;
-using System.Reflection.Emit;
-using System.Text.RegularExpressions;
-
-namespace BookApi.Domain.Common.Models;
+﻿namespace Library.Domain.Common.Abstractions;
 
 public abstract record ValueObject<T,T2> where T2 : ValueObject<T,T2>
 {
-    protected ValueObject(T value) => Value = value;
-    public static ConstructorInfo _fieldInfo = typeof(ValueObject<T,T2>).GetConstructor(BindingFlags.Instance | BindingFlags.NonPublic, [typeof(T)]);
+    public static ConstructorInfo _fieldInfo = typeof(ValueObject<T, T2>).GetConstructor(BindingFlags.Instance |
+        BindingFlags.NonPublic, [typeof(T)]);
     public static readonly Func<T, T2> hhj;
+
+    protected ValueObject(T value) => Value = value;
 
     static ValueObject()
     {

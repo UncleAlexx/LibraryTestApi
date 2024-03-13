@@ -1,16 +1,17 @@
-﻿using BookApi.Domain.Book.Validation;
-using BookApi.Domain.Book.Validation.Enums;
-using BookApi.Domain.Book.Validation.Extensions;
-using BookApi.Domain.Common.Models;
-using BookApi.Domain.Common.Results.ResultsKind;
+﻿namespace Library.Domain.Book.ValueObjects.Stock;
 
-namespace BookApi.Domain.Book.ValueObjects.Stock;
-
-public record DescriptionObject : ValueObject<string, DescriptionObject>
+public sealed partial class DescriptionObject : StringObject<DescriptionObject>
 {
-    private DescriptionObject(string value) : base(value) => Value = value;
+    private DescriptionObject(in string value, in bool success = true) : base(value, success) { }
+    [JsonIgnore]
+    public override sealed Bounds<int> Bounds { get; } = new Bounds<int>(20, 100); 
+    [JsonIgnore]
+    public override sealed bool Default { get; } = true; 
+    [JsonIgnore]
+    public override string ErrorMessage { get; init; } = ValidationMessages.DescriptionMessage;
 
-    public static EntityResult<DescriptionObject> Create(string value) =>
-        value is not null or "" && BookPropertiesNames.Description.IsMatch(value!) ?
-        EntityResult<DescriptionObject>.Success(new(value)) : EntityResult<DescriptionObject>.Failed(new(value));
+    public static new string PropertyName { get; } = "Description";
+
+    [GeneratedRegex(@"^(?i)(((?<Cyryllic>[а-яё])|(?<Latin>[a-z])){1,}( ){0,1})+((?<Cyryllic>[а-яё])|(?<Latin>[a-z])){2,}$")]
+    public override sealed partial Regex Pattern();
 }

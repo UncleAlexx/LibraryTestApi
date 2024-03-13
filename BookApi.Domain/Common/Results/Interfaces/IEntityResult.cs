@@ -1,7 +1,8 @@
-﻿namespace BookApi.Domain.Common.Results.Interfaces;
+﻿namespace Library.Domain.Common.Results.Interfaces;
 
-public interface IEntityResult<T, T2> : IResult<T> where T2 : IEntityResult<T, T2>  
+public interface IEntityResult<TEntity, TCreationResult> : IResult<TEntity> where TCreationResult : 
+    IEntityResult<TEntity, TCreationResult>  
 {
-    public abstract static T2 Success(T entity);
-    public abstract static T2 Failed(T entity);
+    public abstract static TCreationResult Success(in TEntity entity);
+    public abstract static TCreationResult Failed(in TEntity entity);
 }

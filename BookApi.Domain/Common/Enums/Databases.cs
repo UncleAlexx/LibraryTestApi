@@ -1,5 +1,4 @@
-﻿
-namespace BookApi.Domain.Common.Enums;
+﻿namespace Library.Domain.Common.Enums;
 
 public enum Databases : byte
 {

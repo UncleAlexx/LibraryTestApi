@@ -1,13 +1,8 @@
-﻿using BookApi.Domain.Book.Validation.Constants;
-using BookApi.Domain.Book.Validation.Enums;
-using System.Collections.ObjectModel;
-using System.Text.RegularExpressions;
-
-namespace BookApi.Domain.Book.Validation.Extensions;
+﻿namespace Library.Domain.Book.Validation.Extensions;
 
 public static class PredicatesFactory
 {
-    private static readonly ReadOnlyDictionary<BookPropertiesNames, Regex> BookPropertiesPatterns = new(
+    private static readonly ReadOnlyDictionary<BookPropertiesNames, Regex> _bookPropertiesPatterns = new(
         new Dictionary<BookPropertiesNames, Regex>(Enum.GetValues<BookPropertiesNames>().Length)
         {
             [BookPropertiesNames.Isbn] = ValidationPatterns.Isbn(),
@@ -21,7 +16,7 @@ public static class PredicatesFactory
     {
         if (propertyValue is null)
             return false;
-        Match match = BookPropertiesPatterns[bookPropertyName].Match(propertyValue);
+        Match match = _bookPropertiesPatterns[bookPropertyName].Match(propertyValue);
         static bool IsLanguageUnique(Match match) => (match.Groups[RegexNamedGroups.Cyryllic].Success &&
             match.Groups[RegexNamedGroups.Latin].Success) is false;
         return match.Success && (bookPropertyName is BookPropertiesNames.Isbn || IsLanguageUnique(match));

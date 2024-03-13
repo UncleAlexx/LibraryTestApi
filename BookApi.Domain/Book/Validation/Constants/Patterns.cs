@@ -1,8 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿namespace Library.Domain.Book.Validation.Constants;
 
-namespace BookApi.Domain;
-
-public partial class ValidationPatterns
+public sealed partial class ValidationPatterns
 {
     [GeneratedRegex(@"^\d{3}-\d-\d{2}-\d{6}-\d$")]
     public static partial Regex Isbn();

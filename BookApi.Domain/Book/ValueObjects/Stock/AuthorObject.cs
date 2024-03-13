@@ -1,13 +1,16 @@
-﻿using BookApi.Domain.Common.Models;
-using BookApi.Domain.Common.Results.ResultsKind;
+﻿namespace Library.Domain.Book.ValueObjects.Stock;
 
-namespace BookApi.Domain.Book.ValueObjects.Stock;
-
-public record AuthorObject : ValueObject<string, AuthorObject>
+public sealed partial class AuthorObject : StringObject<AuthorObject>
 {
-    private AuthorObject(string value) : base(value) => Value = value;
+    private AuthorObject(in string value, in bool success = true) : base(value, success) { }
 
-    public static EntityResult<AuthorObject> Create(string value) =>
-        value is not null or "" && BookPropertiesNames.Author.IsMatch(value!) ?
-        EntityResult<AuthorObject>.Success(new(value)) : EntityResult<AuthorObject>.Failed(new(value));
+    [JsonIgnore]
+    public override sealed Bounds<int> Bounds { get; } = new Bounds<int>(13, 40); 
+    [JsonIgnore]
+    public override string ErrorMessage { get; init; } = ValidationMessages.AuthorMessage;
+
+    public static new string PropertyName { get; } = "Author";
+
+    [GeneratedRegex(@"^(?i)(((?<Cyryllic>[а-яё])|(?<Latin>[a-z])){2,} ){2}((?<Cyryllic>[а-яё])|(?<Latin>[a-z])){7,}$")]
+    public override sealed partial Regex Pattern();
 }

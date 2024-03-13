@@ -1,17 +1,18 @@
-﻿using BookApi.Domain.Book.Validation;
-using BookApi.Domain.Common.Models;
-using BookApi.Domain.Common.Results.ResultsKind;
-using System.Runtime.CompilerServices;
+﻿namespace Library.Domain.Book.ValueObjects.Stock;
 
-namespace BookApi.Domain.Book.ValueObjects.Stock;
-
-
-public record GenreObject : ValueObject<string, GenreObject>
+public sealed partial class GenreObject : StringObject<GenreObject>
 {
-    private GenreObject(string value) : base(value) => Value = value;
+    private GenreObject(in string value, in bool success = true) : base(value, success) { }
 
-    public static EntityResult<GenreObject> Create(string value) =>
-        value is not null or "" && BookPropertiesNames.Genre.IsMatch(value!) ?
-        EntityResult<GenreObject>.Success(new(value)) : EntityResult<GenreObject>.Failed(new(value));
+    [JsonIgnore]
+    public override sealed bool Default { get; } = true;
+    [JsonIgnore]
+    public override sealed Bounds<int> Bounds { get; } = new Bounds<int>(5, 30); 
+    [JsonIgnore]
+    public override string ErrorMessage { get; init; } = ValidationMessages.GenreMessage;
 
+    public static new string PropertyName { get; } = "Genre";
+
+    [GeneratedRegex(@"^(?i)((?<Cyryllic>[а-яё])|(?<Latin>[a-z])){5,}$")]
+    public override sealed partial Regex Pattern();
 }

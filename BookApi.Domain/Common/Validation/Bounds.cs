@@ -1,8 +1,9 @@
-﻿namespace BookApi.Domain.Common.Validation;
+﻿namespace Library.Domain.Common.Validation;
 
-public readonly struct Bounds<T>(T min, T max) where T : struct
+public readonly struct Bounds<TLimit>(in TLimit min, in TLimit max) where TLimit : struct, IComparable<TLimit>
 {
-    public readonly T Max = max;
-    public readonly T Min = min;
-}
+    public readonly TLimit Max = max;
+    public readonly TLimit Min = min;
 
+    public bool InRange(in TLimit instance) => instance.CompareTo(Min) >= 0 && instance.CompareTo(Max) <= 0;
+}

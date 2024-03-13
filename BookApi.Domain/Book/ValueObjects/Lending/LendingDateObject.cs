@@ -1,13 +1,11 @@
-﻿using BookApi.Domain.Common.Models;
-using BookApi.Domain.Common.Results.ResultsKind;
+﻿namespace Library.Domain.Book.ValueObjects.Lending;
 
-namespace BookApi.Domain.Book.ValueObjects.Lending;
-
-public record LendingDateObject : ValueObject<DateTime, LendingDateObject>
+public sealed class LendingDateObject : DateObject<LendingDateObject>
 {
-    private LendingDateObject(DateTime value) : base(value) => Value = value;
+    private LendingDateObject(in DateTime value, in bool success = true) : base(value, success) { }
+    
+    [JsonIgnore]
+    public override sealed Bounds<DateTime> Bounds { get; } = new(new(2000, 1, 1), DateTime.Today.AddDays(1));
 
-    public static EntityResult<LendingDateObject> Create(DateTime value) => 
-        value.IsUpToDate()? EntityResult<LendingDateObject>.Success(new(value)) : 
-        EntityResult<LendingDateObject>.Failed(new(value));
+    public static new string PropertyName { get; } = "LendingDate";
 }

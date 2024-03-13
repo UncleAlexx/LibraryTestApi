@@ -1,8 +1,7 @@
-﻿namespace BookApi.Domain.Common.Results.Interfaces;
+﻿namespace Library.Domain.Common.Results.Interfaces;
 
-public interface IResult<T2>
+public interface IResult<TEntity>
 {
-    public T2? Entity { get; init; }
-
+    public TEntity? Entity { get; init; }
     public bool Successful { get; init; }
 }

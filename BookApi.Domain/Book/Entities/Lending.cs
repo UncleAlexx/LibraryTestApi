@@ -1,31 +1,30 @@
-﻿namespace BookApi.Domain.Book.Entities;
+﻿namespace Library.Domain.Book.Entities;
 
-
-public class Lending: Entity<IdObject> 
+public sealed class Lending : Entity<IdObject>
 {
     [SetsRequiredMembers]
-    private Lending(LendingDateObject lendingDate, ReturnDateObject @return, IdObject id, BookIdObject bookId) : base(id) 
-    { 
-        LendingDate = lendingDate;
-        Return = @return;
-        BookId = bookId;
-    }
+    private Lending(LendingDateObject lendingDate, ReturnDateObject @return, IdObject id, BookIdObject bookId) :
+        base(id) => (LendingDate, Return, BookId) = (lendingDate, @return, bookId);
 
     [JsonIgnore]
-    public Book? Book { get; set; }
-
-    public required BookIdObject BookId { get; set; }
+    public Book? Book { get; private set; }
+    public BookIdObject BookId { get; private set; }
 
     public required LendingDateObject LendingDate { get; set; }
-
     public required ReturnDateObject Return { get; set; }
+
+    public bool AreDatesValid()
+    { 
+        if (this is { Return: null } or { LendingDate: null })
+            return false;
+        return LendingDate.Value < Return.Value;
+    }
     
-    public static EntityResult<Lending> CreateWithValidation(DateTime lendingDate, DateTime returnDate, Guid bookId, Guid id)
+    public static EntityResult<Lending> Create(in EntityResult<LendingDateObject> lendingDate, 
+        in EntityResult<ReturnDateObject> returnDate, in BookIdObject bookId, in IdObject id)
     {
-        var strongLendingDate = LendingDateObject.Create(lendingDate);
-        var strongReturnDate = ReturnDateObject.Create(returnDate);
-        Lending lending = new(strongLendingDate.Entity, strongReturnDate.Entity, IdObject.Create(id), BookIdObject.Create(bookId));
-        if (strongLendingDate.Successful && strongReturnDate.Successful && strongLendingDate.Entity.Value < strongReturnDate.Entity.Value)
+        Lending lending = new(lendingDate.Entity, returnDate.Entity, id, bookId);
+        if (lendingDate.Successful && returnDate.Successful && lending.AreDatesValid())
             return EntityResult<Lending>.Success(lending);
         return EntityResult<Lending>.Failed(lending);
     }

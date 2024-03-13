@@ -1,7 +1,4 @@
-﻿using BookApi.Domain.Common.Errors.Bases;
-using System.Runtime.CompilerServices;
-
-namespace BookApi.Domain.Common.Errors.ErrorKinds;
+﻿namespace Library.Domain.Common.Errors.ErrorKinds;
 
 public sealed class Addition<T, TCriteria>(TCriteria criteria, 
     [CallerArgumentExpression(nameof(criteria))] string criteriaName = "") : IError

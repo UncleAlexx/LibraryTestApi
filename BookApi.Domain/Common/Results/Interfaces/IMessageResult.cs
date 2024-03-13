@@ -1,9 +1,10 @@
-﻿namespace BookApi.Domain.Common.Interfaces;
+﻿namespace Library.Domain.Common.Results.Interfaces;
 
-public interface IMessageResult <T, T2> : IResult<T> where T2 : IMessageResult<T, T2>
+public interface IMessageResult <TInstance, TCreationResult> : IResult<TInstance>
+    where TCreationResult : IMessageResult<TInstance, TCreationResult>
 {
     public ushort OperationCode { get; init; }
     public string? Message { get; init; }
-    public abstract static T2 Success(T instance);
-    public abstract static T2 Failed(string message, ushort operationCode);
+    public abstract static TCreationResult Success(in TInstance instance);
+    public abstract static TCreationResult Failed(in string message, in ushort operationCode);
 }

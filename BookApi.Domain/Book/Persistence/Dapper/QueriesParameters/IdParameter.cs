@@ -1,10 +1,8 @@
-﻿using BookApi.Domain.Common.Persistence.Dapper.Abstractions;
+﻿namespace Library.Domain.Book.Persistence.Dapper.QueriesParameters;
 
-namespace BookApi.Domain.Book.Persistence.Dapper.QueriesParameters;
-
-public sealed class IdParameter : QueryParameter<IdParameter>
+internal sealed class IdParameter : QueryParameter<IdParameter, Guid>
 {
-    public Guid? Id { get; set; }
+    public Guid Id { get => BackingField; set  { BackingField = value == Guid.Empty ? BackingField : value; } }
 
     IdParameter() { }
 }

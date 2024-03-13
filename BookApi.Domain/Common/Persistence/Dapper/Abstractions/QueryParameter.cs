@@ -1,24 +1,12 @@
-﻿using System.Reflection;
-using System.Reflection.Emit;
+﻿namespace Library.Domain.Common.Persistence.Dapper.Abstractions;
 
-namespace BookApi.Domain.Common.Persistence.Dapper.Abstractions;
-
-public abstract class QueryParameter<T> where T : QueryParameter<T>
+internal abstract class QueryParameter<TParameter, TValue> where TParameter : QueryParameter<TParameter, TValue>
 {
-    private static readonly ConstructorInfo _ctorInfo = typeof(T).GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, [])!;
+    [MaybeNull]
+    protected private TValue BackingField;
 
-    static QueryParameter()
-    {
-        static T InitInstance()
-        {
-            DynamicMethod f = new(string.Empty, typeof(T), []);
-            var info = f.GetILGenerator();
-            info.Emit(OpCodes.Newobj, _ctorInfo);
-            info.Emit(OpCodes.Ret);
-            return f.CreateDelegate<Func<T>>()();
-        }
-        Instance = InitInstance();
-    }
+    private static readonly ConstructorInfo _ctorInfo = typeof(TParameter).
+        GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, [])!;
 
-    public readonly static T Instance;
+    public readonly static TParameter Instance = Emitter.EmitCall<Func<TParameter>>(_ctorInfo, [])!();
 }

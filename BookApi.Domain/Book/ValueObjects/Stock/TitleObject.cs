@@ -1,15 +1,16 @@
-﻿using BookApi.Domain.Book.Validation;
-using BookApi.Domain.Common.Models;
-using BookApi.Domain.Common.Results.ResultsKind;
+﻿namespace Library.Domain.Book.ValueObjects.Stock;
 
-namespace BookApi.Domain.Book.ValueObjects.Stock;
-
-
-public record TitleObject : ValueObject<string, TitleObject>
+public sealed partial class TitleObject : StringObject<TitleObject>
 {
-    private TitleObject(string value) : base(value) => Value = value;
+    [JsonIgnore]
+    public override sealed Bounds<int> Bounds { get; } = new Bounds<int>(3, 30); 
+    [JsonIgnore]
+    public override string ErrorMessage { get; init; } = ValidationMessages.TitleMessage;
 
-    public static EntityResult<TitleObject> Create(string value) =>
-        value is not null or "" && BookPropertiesNames.Title.IsMatch(value!) ?
-        EntityResult<TitleObject>.Success(new(value)) : EntityResult<TitleObject>.Failed(new(value));
+    public static new string PropertyName { get; } = "Title";
+
+    private TitleObject(in string value, in bool success = true) : base(value, success) { }
+
+    [GeneratedRegex(@"^(?i)((?<Cyryllic>[а-яё])|(?<Latin>[a-z])){1,}( ){0,1}((?<Cyryllic>[а-яё])|(?<Latin>[a-z])){2,}$")]
+    public override sealed partial Regex Pattern();
 }
