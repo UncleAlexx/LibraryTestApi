@@ -2,5 +2,5 @@
 
 public interface IError
 {
-    internal string? Message { get; init; }
+    internal string Message { get; init; }
 }
