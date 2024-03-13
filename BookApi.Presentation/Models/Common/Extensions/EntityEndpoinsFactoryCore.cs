@@ -1,25 +1,30 @@
-﻿using Library.Domain.Common.Results.ResultsKind;
+﻿using System.Diagnostics;
 
 namespace Library.Presentation.Models.Common.Extensions;
 
 internal static partial class EntityEndpointsFactory
 {
-    private static ValidationProblem CreateValidationProblem<TResultType, TRequestResult>(ValidationResult<TResultType> result)
-        => result.Successful? TypedResults.ValidationProblem(_emptyErrors) :
-         TypedResults.ValidationProblem(type: "ValidationException", errors:
-             result.Errors.GroupBy(x => x.PropertyName, y => y.ErrorMessage).
-             ToDictionary(x => x.Key, y => y.ToArray()));
+    private static readonly Type _messageResult = typeof(MessageResult<>);
+    private static ValidationProblem CreateValidationProblem<TResultType, TRequestResult>(ValidationResult<TResultType> 
+        result) => result.Successful? TypedResults.ValidationProblem(_emptyErrors) :
+         TypedResults.ValidationProblem(type: nameof(ValidationException), errors:
+             result.Errors!.GroupBy(failure => 
+             failure.PropertyName?[..(failure.PropertyName switch { var a when a.IndexOf('.') is - 1 => a.Length, var a => a.IndexOf('.')})] ??"", 
+             failure => failure.ErrorMessage??"").
+             ToDictionary(keyGrouping => keyGrouping.Key, valueGrouping => valueGrouping.ToArray()));
 
-    private async static Task<Results<TType, ValidationProblem, ProblemHttpResult>> CreateRequestBase<TResultType, TRequestResult, TType,m>(ISender sender,
-        IGeneric<TResultType, TRequestResult> query, Func<TResultType, m> sdfdf, Func<string, m, TType>? cri2 = null, string route = "", Func<m, TType>? crit2 = null)
-      where TRequestResult : IResult<TResultType> where TType : class, IResult
+    private async static Task<Results<TResult, ValidationProblem, ProblemHttpResult>> CreateRequestBase
+        <TResultType, TRequestResult, TResult, TSelectorParameter>(ISender sender, IGeneric<TResultType, TRequestResult> query, 
+        Func<TResultType, TSelectorParameter> TParameterSelector, Func<string, TSelectorParameter, TResult>? 
+        TParameterizedSelector = null, string route = "", Func<TSelectorParameter, TResult>? TResultSelector = null) 
+        where TRequestResult : IResult<TResultType> where TResult : class, IResult
     {
         var result = await sender.Send(query);
-        var type = result.GetType();
-        return result.Successful ? cri2?.Invoke(route, sdfdf(result.Entity!)) ?? crit2!(sdfdf(result.Entity!)) : type switch
+        return result.Successful ? TParameterizedSelector?.Invoke(route, TParameterSelector(result.Entity!)) ?? 
+            TResultSelector!(TParameterSelector(result.Entity!)) : result.GetType().GetGenericTypeDefinition() switch
         {
-            _ when type == typeof(MessageResult<TResultType>) =>
-            TypedResults.Problem(statusCode: Unsafe.As<TRequestResult?, MessageResult<TResultType>>(ref result).OperationCode,
+            var type when type == _messageResult => TypedResults.Problem(statusCode: 
+                Unsafe.As<TRequestResult?, MessageResult<TResultType>>(ref result).OperationCode,
             instance: (Unsafe.As<TRequestResult?, MessageResult<TResultType>>(ref result)).Message, type: "Http Error"),
             _ => CreateValidationProblem<TResultType, TRequestResult>(Unsafe.As<TRequestResult?, ValidationResult<TResultType>>(ref result))
         };
