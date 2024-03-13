@@ -1,8 +1,8 @@
 ﻿namespace Library.Domain.Book.Persistence.Dapper.QueriesParameters;
 
-public sealed class IsbnParameter : QueryParameter<IsbnParameter>
+internal sealed class IsbnParameter : QueryParameter<IsbnParameter, string>
 {
-    public string? Isbn { get; set; }
+    public string? Isbn { get => BackingField; set { BackingField = string.IsNullOrEmpty(value) ? BackingField : value; } }
 
     IsbnParameter() { }
 }
