@@ -1,5 +1,4 @@
-﻿
-using BookApi.Presentation.Contracts.Book.Common.Bases;
+﻿namespace Library.Presentation.Contracts.Book.Update;
 
-internal record UpdateResponse<T>(DateTime Date, string Route, T Inserted, T Deleted,  ushort Code = 200) 
-    : ResponseBase<T>(Date, Route, Code);
+internal sealed record UpdateResponse<TEntity>(DateTime Date, string Route, TEntity Updated, 
+    ushort Code = 200) : ResponseBase<TEntity>(Date, Route, Code);

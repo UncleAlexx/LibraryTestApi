@@ -1,19 +1,16 @@
-﻿using BookApi.Presentation.Contracts.Book.Common;
-using BookApi.Presentation.Contracts.Book.Common.Mappers;
-using BookApi.Presentation.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Library.Presentation.Models;
 
-namespace BookApi.Presentation;
+namespace Library.Presentation;
 
 public static class DependencyInjection
 {
-    public static WebApplication AddPresentation(this WebApplication app, IServiceCollection services)
+    public static WebApplicationBuilder AddPresentation(this WebApplicationBuilder builder) => builder.AddMappers();
+
+    public static WebApplication MapEndpoints(this WebApplication app) => app.MapBook().MapLogin();
+
+    private static WebApplicationBuilder AddMappers(this WebApplicationBuilder builder)
     {
-        return app.AddBookCommands().AddLogin();
-    }
-    public static void AddPresentation2(this  IServiceCollection services)
-    {
-        services.AddSingleton<IBookMapper, BookMapper>();
+        builder.Services.AddSingleton<IBookMapper, BookMapper>();
+        return builder;
     }
 }

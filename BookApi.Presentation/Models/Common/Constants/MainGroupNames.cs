@@ -1,8 +1,4 @@
-﻿using BookApi.Presentation.Models.Common.Constants.Enums;
-using BookApi.Presentation.Models.Common.Extensions;
-using System.Collections.ObjectModel;
-
-namespace BookApi.Presentation.Models.Common.Constants;
+﻿namespace Library.Presentation.Models.Common.Constants;
 
 internal static class MainGroupNamesMapper
 {

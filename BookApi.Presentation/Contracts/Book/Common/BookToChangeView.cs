@@ -1,6 +1,6 @@
-﻿namespace Library.Presentation.Contracts.Book.Add;
+﻿namespace BookApi.Presentation.Contracts.Book.Common;
 
-public readonly record struct BookToAddView
+internal readonly struct BookToChangeView
 {
     public required string Isbn { get; init; }
     public required string Author { get; init; }

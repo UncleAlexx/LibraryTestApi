@@ -1,34 +1,29 @@
-﻿
-using BookApi.Application.Common.Abstractions.Requests;
-using BookApi.Domain.Book;
-using BookApi.Domain.Common.Results.Common;
-using BookApi.Domain.Common.Results.Interfaces;
-using BookApi.Domain.Common.Results.ResultsKind;
-using BookApi.Presentation.Contracts.Book.Common.Bases;
-using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-
-namespace Autoservice.Presentation;
+﻿namespace Library.Presentation.Models.Common.Extensions;
 
 internal static partial class EntityEndpointsFactory
 {
-    public async static Task<Results<m, ValidationProblem, ProblemHttpResult>> CreateRequest<TResultType, TRequestResult, TType,m>(ISender sender,
-       IGeneric<TResultType, TRequestResult> query, Func<TResultType, TType> k,Func<string,TType,m>? criteria, string criteria2 = "")
-      where TRequestResult : IResult<TResultType> where TType : ResponseBase<TResultType> where m : class, IResult
-        => await CreateRequestBase(sender, query, k, criteria, criteria2);
+    public async static Task<Results<THttpResult, ValidationProblem, ProblemHttpResult>> CreateRequest<TIResult, TResponse, 
+        IResultResult, THttpResult> (ISender sender, IGeneric<TIResult, TResponse> query, Func<TIResult, IResultResult> 
+        ResultBaseSelector, Func<string, IResultResult, THttpResult>? parameterizedResultSelector, 
+        string parameterizedSelectorArg = "") where TResponse : IResult<TIResult> where IResultResult : 
+        ResponseBase<TIResult> where THttpResult : class, IResult => 
+        await CreateRequestBase(sender, query, ResultBaseSelector, parameterizedResultSelector, parameterizedSelectorArg);
 
-    public async static Task<Results<m, ProblemHttpResult>> CreateRequest<TResultType, TRequestResult, TType, m>(ISender sender,
-         IEnumerableQuery<TResultType, TRequestResult> query, Func<IEnumerable<TResultType>, TType> criteria, Func<TType, m> p)
-      where TRequestResult : IResult<IEnumerable<TResultType>> where m : class, IResult
+    public async static Task<Results<THttpResult, ProblemHttpResult>> CreateRequest<TEntity, TResponse, TResultBase, 
+        THttpResult>(ISender sender,  IEnumerableQuery<TEntity, TResponse> query, Func<IEnumerable<TEntity>, TResultBase> 
+        resultBaseSelector, Func<TResultBase, THttpResult> httpResultSelector) where TResponse : 
+        IMessageResult<IEnumerable<TEntity>, TResponse>, IResult<IEnumerable<TEntity>> where THttpResult : class, IResult
     {
         var result = await sender.Send(query);
-        return result.Successful ? p(criteria(result.Entity!)): TypedResults.Problem(statusCode: result is null ? 503 : 404, instance:
-            (result as MessageResult<IEnumerable<TResultType>>).Message, type: "Http Error");
+        return result.Successful ? httpResultSelector(resultBaseSelector(result.Entity!)): 
+            TypedResults.Problem(statusCode: result.OperationCode, instance: result!.Message, type: "Http Error");
     }
 
-    public async static Task<Results<m, ValidationProblem, ProblemHttpResult>> CreateRequest<TResultType, TRequestResult, TType,m>(ISender sender,
-        IGeneric<TResultType, TRequestResult> query,Func<TResultType, TType> sdfdf , Func<TType, m> p)
-      where TRequestResult : IResult<TResultType>  where TType : ResponseBase<TResultType> where m: class,IResult
-        => await CreateRequestBase(sender,query, sdfdf, crit2: p);
+    public async static Task<Results<THttpResult, ValidationProblem, ProblemHttpResult>> CreateRequest
+        <TResultBase, TRequestResult, IResultResult,THttpResult>(ISender sender, 
+        IGeneric<TResultBase, TRequestResult> query, Func<TResultBase, IResultResult> IResultResultSelector, 
+        Func<IResultResult, THttpResult> THttpResultSelector)
+      where TRequestResult : IResult<TResultBase>  where IResultResult : ResponseBase<TResultBase> where 
+        THttpResult: class, IResult  => await CreateRequestBase(sender,query, IResultResultSelector,
+            TResultSelector: THttpResultSelector);
 }

@@ -1,6 +1,6 @@
-﻿namespace BookApi.Presentation.Contracts.Book.Update;
+﻿namespace Library.Presentation.Contracts.Book.Update;
 
-public readonly record struct BookToUpdateView()
+public readonly record struct BookToUpdateView
 {
     public required string Isbn { get; init; }
     public required string Author { get; init; }

@@ -1,21 +1,16 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.Http;
+﻿namespace Library.Presentation.Models;
 
-namespace BookApi.Presentation.Models;
-
-public static class Login
+internal static class Login
 {
-    public static WebApplication AddLogin(this WebApplication app)
+    internal static WebApplication MapLogin(this WebApplication app)
     {
-        app.MapGet("Login/Queries/{name}/{email}/{password}/{secret}", async Task<Ok<string?>>
+        var (_, queries) = app.ConfigureOpenApi(PrimaryGroups.LoginMainGroup);
+        queries.MapGet("Login/Queries/{name}/{email}/{password}/{secret}", async Task<Ok<string?>>
             (ISender sender, CancellationToken token, string name, string email, string password, string secret = "NA") =>
         {
-            var res = await sender.Send(new BookApi.Application.Login.Queries.Login(name, email, password, secret), token);
-            return TypedResults.Ok<string?>(res.Entity);
-        }).WithTags("Login");
+            var result = await sender.Send(new LoginQuery(name, email, password, secret), token);
+            return TypedResults.Ok<string?>(result.Entity);
+        });
         return app;
     }
 }
