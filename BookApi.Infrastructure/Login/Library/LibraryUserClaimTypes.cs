@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-namespace BookApi.Infrastructure.Authentication.Library;
+﻿namespace Library.Infrastructure.Login.Library;
 
 public static class LibraryUserClaimType
 {

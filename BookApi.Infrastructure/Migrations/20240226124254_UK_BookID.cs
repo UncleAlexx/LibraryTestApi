@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace BookApi.Infrastructure.Migrations
+namespace Library.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class UK_BookID : Migration

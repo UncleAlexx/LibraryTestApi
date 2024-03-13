@@ -1,8 +1,4 @@
-﻿using BookApi.Infrastructure.Authentication.Library.Jwt;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-
-namespace BookApi.Infrastructure.Authentication.Library;
+﻿namespace Library.Infrastructure.Login.Library.Jwt;
 
 public class JwtBearerOptionsSetup(IConfiguration config) : IConfigureOptions<JwtBearerOptions>
 {

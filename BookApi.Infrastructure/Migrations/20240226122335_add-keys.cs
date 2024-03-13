@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BookApi.Infrastructure.Migrations
+namespace Library.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class addkeys : Migration

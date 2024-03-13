@@ -5,7 +5,7 @@
 namespace Library.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddIndexes : Migration
+    public partial class autoinclude_navigations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -1,4 +1,4 @@
-﻿namespace BookApi.Infrastructure.Book.Persistence.Enums;
+﻿namespace Library.Infrastructure.Book.Persistence.Enums;
 
 public enum Databases : byte
 {

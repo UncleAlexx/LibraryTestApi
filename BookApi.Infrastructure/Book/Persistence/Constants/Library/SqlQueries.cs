@@ -1,4 +1,4 @@
-﻿namespace BookApi.Infrastructure.Book.Persistence.Constants.Library;
+﻿namespace Library.Infrastructure.Book.Persistence.Constants.Library;
 
 internal class SqlQueries
 {
@@ -24,15 +24,21 @@ internal class SqlQueries
         on s.BookID = l.BookID 
         where Isbn = @Isbn
         """;
-
     internal const string GetIdByIsbn = """
-        Select top (1) BookID
+        select top (1) ID
+        from Books.Books 
+        where ID = (select top (1) BookID 
+        from Books.Stock
+        where Isbn = @Isbn)
+    """;
+    internal const string GetStockIdByIsbn = """
+        select top (1) ID 
         from Books.Stock
         where Isbn = @Isbn
-        """;
-    internal const string GetBookId = """
-        Select top (1) ID
-        from Books.Books
-        where ID = @Id
-        """;
+    """;
+    internal const string GetLendingIdByIsbn = """
+        select top (1) ID 
+        from Books.Lending
+        where BookID = (select top (1) BookID from Books.Stock where Isbn = @Isbn)
+    """;
 }

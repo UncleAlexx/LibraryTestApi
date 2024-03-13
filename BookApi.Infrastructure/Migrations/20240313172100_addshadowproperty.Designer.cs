@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Infrastructure.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20240226124254_UK_BookID")]
-    partial class UK_BookID
+    [Migration("20240313172100_addshadowproperty")]
+    partial class addshadowproperty
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,6 +31,10 @@ namespace Library.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ID");
+
+                    b.Property<DateTime>("LastModified")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -86,25 +90,29 @@ namespace Library.Infrastructure.Migrations
                             b1.Property<string>("Author")
                                 .IsRequired()
                                 .HasMaxLength(40)
-                                .HasColumnType("nvarchar");
+                                .HasColumnType("nvarchar(40)")
+                                .IsFixedLength(false);
 
                             b1.Property<string>("Description")
                                 .HasMaxLength(100)
-                                .HasColumnType("nvarchar");
+                                .HasColumnType("nvarchar(100)")
+                                .IsFixedLength(false);
 
                             b1.Property<string>("Genre")
                                 .HasMaxLength(40)
-                                .HasColumnType("nvarchar");
+                                .HasColumnType("nvarchar(40)")
+                                .IsFixedLength(false);
 
                             b1.Property<string>("Isbn")
                                 .IsRequired()
-                                .HasMaxLength(17)
-                                .HasColumnType("char");
+                                .HasColumnType("nchar(450)")
+                                .IsFixedLength();
 
                             b1.Property<string>("Title")
                                 .IsRequired()
                                 .HasMaxLength(30)
-                                .HasColumnType("nvarchar");
+                                .HasColumnType("nvarchar(30)")
+                                .IsFixedLength(false);
 
                             b1.HasKey("Id", "BookId");
 
@@ -128,11 +136,9 @@ namespace Library.Infrastructure.Migrations
                             b1.Navigation("Book");
                         });
 
-                    b.Navigation("Lending")
-                        .IsRequired();
+                    b.Navigation("Lending");
 
-                    b.Navigation("Stock")
-                        .IsRequired();
+                    b.Navigation("Stock");
                 });
 #pragma warning restore 612, 618
         }

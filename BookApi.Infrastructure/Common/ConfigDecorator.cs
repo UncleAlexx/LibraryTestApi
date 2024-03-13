@@ -1,6 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿namespace Library.Infrastructure.Common;
 
-namespace BookApi.Infrastructure.Common;
 internal static class ConfigDecorator
 {
     internal static IConfigurationManager? Config;

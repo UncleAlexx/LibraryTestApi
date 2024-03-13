@@ -5,7 +5,7 @@
 namespace Library.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddIndexes : Migration
+    public partial class changeProperties : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
