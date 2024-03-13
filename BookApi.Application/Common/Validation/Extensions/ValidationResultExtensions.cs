@@ -1,22 +1,25 @@
-﻿namespace Library.Application.Common.Validation.Extensions;
+﻿using static System.Net.Mime.MediaTypeNames;
+
+namespace Library.Application.Common.Validation.Extensions;
 
 internal static class ValidationResultExtensions
 {
-    public async static Task<MessageResult<BookView>> FailDbExceptionIfErrorAsync(RequestHandlerDelegate<MessageResult<BookView>> next)
-        => await FailDbExceptionBaseAsync(next, MessageResult<BookView>.Failed(new DbDown(Databases.Library).Message, 503));
+    public async static Task<MessageResult<TResult>> FailDbExceptionIfErrorAsync<TRequest, TResult>(RequestHandlerDelegate<IResult<TResult>> next)
+    {
+        var a = await FailDbExceptionBaseAsync(next, MessageResult<TResult>.Failed(new DbDownError(Databases.Library).Message, 503));
+        return Unsafe.As<IResult<TResult>, MessageResult<TResult>>(ref a);
+    }
+        
 
-    public async static Task<IResult<TResult>> FailDbExceptionIfErrorAsync<TRequest, TResult>(RequestHandlerDelegate<IResult<TResult>> next)
-        => await FailDbExceptionBaseAsync(next, MessageResult <TResult>.Failed(new DbDown(Databases.Library).Message, 503));
-
-    private async static Task<T> FailDbExceptionBaseAsync<T>(RequestHandlerDelegate<T> onSuccess, T instance)
+    private async static Task<TEntity> FailDbExceptionBaseAsync<TEntity>(RequestHandlerDelegate<TEntity> onSuccess, TEntity entity)
     {
         try
         {
             return await onSuccess();
         }
-        catch
+        catch(Exception e)
         {
-            return instance;
+            return entity;
         }
     }
 
