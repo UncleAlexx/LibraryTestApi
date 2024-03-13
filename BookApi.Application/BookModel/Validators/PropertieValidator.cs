@@ -1,24 +1,22 @@
-﻿using FluentValidation;
-using BookApi.Application.Validators.Extensions.Book;
-using BookApi.Application.BookModel.Validation.Constants;
-using BookApi.Domain.Book.Validation.Extensions;
-using BookApi.Domain.Book.Validation.Enums;
-using BookApi.Domain.Book.Entities.Pocos;
+﻿using Library.Domain.Common.Abstractions.ValueObjects.Constants;
 
-namespace BookApi.Application.BookModel.Validators;
+namespace Library.Application.Book.Validators;
 
 internal sealed class PropertiesValidator : AbstractValidator<BookView>
 {
     public PropertiesValidator()
     {
-        RuleFor(book => book.Stock.Isbn.Value).NotNullOrEmpty().IsNullOrLengthInBounds(BookPropertiesNames.Isbn).MatchesSubpatternsOrIsNull(BookPropertiesNames.Isbn);
-        RuleFor(book => book.Stock.Author.Value).NotNullOrEmpty().IsNullOrLengthInBounds(BookPropertiesNames.Author).MatchesSubpatternsOrIsNull(BookPropertiesNames.Author);
-        RuleFor(book => book.Stock.Title.Value).NotNullOrEmpty().IsNullOrLengthInBounds(BookPropertiesNames.Title).MatchesSubpatternsOrIsNull(BookPropertiesNames.Title);
-        RuleFor(book => book.Stock.Description.Value).MatchesSubpatternsOrIsNull(BookPropertiesNames.Description).IsNullOrLengthInBounds(BookPropertiesNames.Description);
-        RuleFor(book => book.Stock.Genre.Value).MatchesSubpatternsOrIsNull(BookPropertiesNames.Genre).IsNullOrLengthInBounds(BookPropertiesNames.Description);
-        RuleFor(book => book.Lending.LendingDate.Value).NotNullOrEmpty().MatchesPredicate(BookPropertiesNames.Lending, PredicatesFactory.IsUpToDate);
-        RuleFor(book => book.Lending.Return.Value).NotNullOrEmpty();
-        RuleFor(book => book).MatchesPredicate(BookPropertiesNames.Return, PredicatesFactory.EnsureLesser, book => book.Lending.LendingDate.Value, book => book.Lending.Return.Value).
-            WithName(PropertiesConstants.RawReturn);
+        RuleFor(book => book.Stock!.Isbn).NotNullOrEmpty<BookView, IsbnObject, string>(IsbnObject.PropertyName).IsNullOrLengthInBounds
+            (IsbnObject.PropertyName).MatchesSubpatternsOrIsNull(IsbnObject.PropertyName);
+        RuleFor(book => book.Stock!.Author).NotNullOrEmpty<BookView, AuthorObject, string>(AuthorObject.PropertyName).IsNullOrLengthInBounds
+            (AuthorObject.PropertyName).MatchesSubpatternsOrIsNull(AuthorObject.PropertyName);
+        RuleFor(book => book.Stock!.Title).NotNullOrEmpty<BookView, TitleObject, string>(TitleObject.PropertyName).IsNullOrLengthInBounds
+            (TitleObject.PropertyName).MatchesSubpatternsOrIsNull(TitleObject.PropertyName);
+        RuleFor(book => book.Stock!.Description!).MatchesSubpatternsOrIsNull(DescriptionObject.PropertyName).
+            IsNullOrLengthInBounds(DescriptionObject.PropertyName);
+        RuleFor(book => book.Stock!.Genre!).MatchesSubpatternsOrIsNull(GenreObject.PropertyName).IsNullOrLengthInBounds(GenreObject.PropertyName);
+        RuleFor(book => book.Lending!.LendingDate).NotNullOrEmpty<BookView, LendingDateObject, DateTime>(LendingDateObject.PropertyName).IsNullOrLengthInBounds2(LendingDateObject.PropertyName);
+        RuleFor(book => book.Lending!.Return).NotNullOrEmpty<BookView, ReturnDateObject, DateTime>(ReturnDateObject.PropertyName).IsNullOrLengthInBounds2(ReturnDateObject.PropertyName);
+        RuleFor(book => book.Lending).Must(x => x.AreDatesValid()).WithMessage(x => x.Lending.Return.ErrorMessage).OverridePropertyName("ReturnDate");
     }
 }

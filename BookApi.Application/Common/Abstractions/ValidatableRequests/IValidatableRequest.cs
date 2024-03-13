@@ -1,4 +1,3 @@
-﻿namespace BookApi.Application.Common.Abstractions.ValidatableRequests;
-public interface IValidatableRequest 
-{
-}
+﻿namespace Library.Application.Common.Abstractions.ValidatableRequests;
+
+internal interface IValidatableRequest;

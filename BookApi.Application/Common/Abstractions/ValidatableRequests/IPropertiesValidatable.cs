@@ -1,6 +1,6 @@
-﻿namespace BookApi.Application.Common.Abstractions.ValidatableRequests;
+﻿namespace Library.Application.Common.Abstractions.ValidatableRequests;
 
-public interface IBookValidatable : IValidatableRequest
+internal interface IBookValidatable : IValidatableRequest
 {
     BookPoco Book { get; }
 }

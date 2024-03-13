@@ -1,12 +1,12 @@
-﻿namespace BookApi.Application.Login;
+﻿namespace Library.Application.Login;
 
-public record JwtOptions
+internal sealed record JwtOptions
 {
-    [Required] public bool ValidateIssuer { get; init; }
-    [Required] public bool ValidateAudience { get; init; }
-    [Required] public bool ValidateLifetime { get; init; }
-    [Required] public bool ValidateIssuerSigningKey { get; init; }
-    [Required] public string ValidIssuer { get; init; }
-    [Required] public string ValidAudience { get; init; }
-    [Required] public string IssuerSigningKey { get; init; }
+    [Required] public required bool ValidateIssuer { get; init; }
+    [Required] public required bool ValidateAudience { get; init; }
+    [Required] public required bool ValidateLifetime { get; init; }
+    [Required] public required bool ValidateIssuerSigningKey { get; init; }
+    [Required] public required string ValidIssuer { get; init; }
+    [Required] public required string ValidAudience { get; init; }
+    [Required] public required string IssuerSigningKey { get; init; }
 }

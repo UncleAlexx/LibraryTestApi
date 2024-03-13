@@ -1,6 +1,6 @@
-﻿namespace BookApi.Application.Common.Abstractions.ValidatableRequests;
+﻿namespace Library.Application.Common.Abstractions.ValidatableRequests;
 
-public interface IIdValidatable : IValidatableRequest
+internal interface IIdValidatable : IValidatableRequest
 {
     Guid Id { get; }
 }

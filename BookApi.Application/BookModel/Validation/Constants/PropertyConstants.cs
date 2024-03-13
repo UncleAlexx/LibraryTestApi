@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application.BookModel.Validation.Constants;
+﻿namespace Library.Application.Book.Validation.Constants;
 
 internal static class PropertiesConstants
 {

@@ -1,15 +1,20 @@
-﻿namespace BookApi.Application.BookModel.Behaviors;
+﻿namespace Library.Application.BookModel.Behaviors;
 
-public class BookValidationBehavior<TRequest, TResponse>(IValidator<BookView> validator) : IPipelineBehavior<TRequest, IResult<BookView>> where TRequest :
-    IBookValidatable
+internal sealed class BookValidationBehavior<TRequest, TResponse>(IValidator<BookView> validator) : 
+    IPipelineBehavior<TRequest, IResult<BookView>> where TRequest : IBookValidatable
 {
     private readonly IValidator<BookView> _validator = validator;
 
-    public async Task<IResult<BookView>> Handle(TRequest request, RequestHandlerDelegate<IResult<BookView>> next, CancellationToken cancellationToken)
+    public async Task<IResult<BookView>> Handle(TRequest request, 
+        RequestHandlerDelegate<IResult<BookView>> next, CancellationToken cancellationToken)
     {
-        var book = BookView.Create(request.Book.Isbn, request.Book.Author, request.Book.Description, request.Book.Genre, request.Book.Title,
-         request.Book.LendingDate, request.Book.ReturnDate, Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
-        var a = await(await _validator.ValidateAsync(book.Entity)).FailValidationIfInvalidAsync(next);
-        return a;
+        var poco = request.Book;
+        var bookId = BookIdObject.Create(poco.BookId);
+        var bookEntity = BookView.Create(Stock.Create(IsbnObject.Create(poco.Isbn), AuthorObject.Create(poco.Author),
+            DescriptionObject.Create(poco.Description!), GenreObject.Create(poco!.Genre!), TitleObject.Create(poco.Title), bookId, 
+            IdObject.Create(poco.StockId)), Lending.Create(LendingDateObject.Create(poco.LendingDate), 
+            ReturnDateObject.Create(poco.ReturnDate), bookId, IdObject.Create(poco.LendingId)), bookId);
+        var validationResult = await(await _validator.ValidateAsync(bookEntity?.Entity!)).FailValidationIfInvalidAsync(next);
+        return validationResult;
     }
 }

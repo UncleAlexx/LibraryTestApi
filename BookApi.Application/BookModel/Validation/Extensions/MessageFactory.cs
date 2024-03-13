@@ -1,4 +1,4 @@
-﻿namespace BookApi.Application.BookModel.Validation.Extensions;
+﻿namespace Library.Application.Book.Validation.Extensions;
 
 internal static class MessagesFactory
 {
