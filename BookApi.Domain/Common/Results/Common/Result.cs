@@ -1,7 +1,7 @@
 ﻿namespace Library.Domain.Common.Results.Common;
 
-public abstract class ResultBase<T>(bool succesful) : IResult<T>
+public abstract class ResultBase<TEntity>(in bool succesful) : IResult<TEntity>
 {
-    public  T? Entity { get; init; }
+    public TEntity? Entity { get; init; }
     public bool Successful { get; init;} = succesful;
 }

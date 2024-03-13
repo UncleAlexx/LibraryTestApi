@@ -1,17 +1,17 @@
 ﻿namespace Library.Domain.Common.Results.ResultsKind;
 
-public  sealed class MessageResult<T> : ResultBase<T>, IMessageResult<T, MessageResult<T>>
+public sealed class MessageResult<TEntity> : ResultBase<TEntity>, IMessageResult<TEntity, MessageResult<TEntity>>
 {
-    private MessageResult(T entity) : base(true) => Entity = entity;
+    private MessageResult(in TEntity entity) : base(true) => Entity = entity;
 
-    private MessageResult(string message, ushort operationCode) : base(false) => 
+    private MessageResult(in string message, in ushort operationCode) : base(false) => 
         (Message, OperationCode) = (message, operationCode);
 
     public string? Message { get; init; }
 
     public ushort OperationCode { get; init; } = 200;
 
-    public static MessageResult<T> Success(T entity) => new(entity);
+    public static MessageResult<TEntity> Success(in TEntity entity) => new(entity);
 
-    public static MessageResult<T> Failed(string message, ushort operationCode) => new(message, operationCode);
+    public static MessageResult<TEntity> Failed(in string message, in ushort operationCode) => new(message, operationCode);
 }
