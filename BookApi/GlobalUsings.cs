@@ -1,14 +1,7 @@
-﻿global using Library.Infrastructure;
-global using Microsoft.Extensions.Options;
-global using System.Text.Json.Serialization;
-global using Library.Infrastructure.Login.Library;
-global using Microsoft.AspNetCore.Authentication.JwtBearer;
-global using Microsoft.AspNetCore.Authorization;
-global using Microsoft.IdentityModel.Tokens;
+﻿global using System.Text.Json.Serialization;
 global using Microsoft.OpenApi.Models;
-global using System.Text;
-global using JwtBearerOptions = Library.Infrastructure.Login.Library.Jwt.JwtBearerOptions;
 global using Library.Application;
 global using Library.Presentation;
+global using Microsoft.AspNetCore.Http.Json;
+global using Library.Infrastructure;
 global using Library;
-global using  Autoservice.Infrastructure;
