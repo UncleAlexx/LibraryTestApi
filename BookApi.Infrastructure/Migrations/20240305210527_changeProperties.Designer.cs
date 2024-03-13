@@ -4,6 +4,7 @@ using Library.Infrastructure.Book.Persistence.Library;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Infrastructure.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    partial class LibraryContextModelSnapshot : ModelSnapshot
+    [Migration("20240305210527_changeProperties")]
+    partial class changeProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,10 +31,6 @@ namespace Library.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ID");
-
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -133,9 +132,11 @@ namespace Library.Infrastructure.Migrations
                             b1.Navigation("Book");
                         });
 
-                    b.Navigation("Lending");
+                    b.Navigation("Lending")
+                        .IsRequired();
 
-                    b.Navigation("Stock");
+                    b.Navigation("Stock")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
