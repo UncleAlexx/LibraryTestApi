@@ -1,31 +1,44 @@
 ﻿namespace Library.Application.Book.Validation.Extensions;
 
-internal static partial class IRuleBuilderExtensions
+internal static class IRuleBuilderExtensions
 {
-    public static IRuleBuilderOptions<T, string> MatchesSubpatternsOrIsNull<T>(this IRuleBuilder<T, string> builder, BookPropertiesNames propertyName){
-        var a = builder.Must(propertyValue => propertyName.IsMatch(propertyValue));
-        return a.When(x => {  return x is not null; }).WithPropertyMessage(propertyName); 
-     }
+    public static IRuleBuilderOptions<RuleBase, TStringResult> MatchesSubpatternsOrIsNull<RuleBase, TStringResult>
+        (this IRuleBuilder<RuleBase, TStringResult> builder, string? name) where TStringResult :
+        IStringObject<EntityResult<TStringResult>>
+    => builder.ChildRules(x => x.RuleFor(x => x.Value).Must((propertyValue, _) => propertyValue.IsMatch()).WithMessage
+        ((stringResult, _) => stringResult.ErrorMessage).Unless(x => x.Value is null).OverrideAllMessages(name));
 
-    public static IRuleBuilderOptions<T, TProperty> NotNullOrEmpty<T, TProperty>(this IRuleBuilder<T, TProperty> builder) => builder.NotNull().NotEmpty();
-    
-    public static IRuleBuilderOptions<T, TProperty> MatchesPredicate<T, TProperty>(this IRuleBuilder<T, TProperty> builder,
-        BookPropertiesNames propertyName, Predicate<TProperty> predicate)
-        => builder.Must(propertyValue => predicate(propertyValue)).WithPropertyMessage(propertyName);
+    public static IRuleBuilderOptions<BookView, Lending> MatchesSubpatternsOrIsNull<TDateObject>(
+        this IRuleBuilder<BookView, Lending> builder, string? message) where TDateObject : IDateObject<EntityResult<TDateObject>> =>
+        builder.Must(lending => lending.AreDatesValid()).WithMessage(x => x.Lending!.Return.ErrorMessage).OverrideAllMessages(message);
 
-    public static IRuleBuilderOptions<T, T> MatchesPredicate<T, TProperty>(this IRuleBuilder<T, T> builder, BookPropertiesNames property,
-        Func<TProperty, TProperty, bool> predicate, Func<T, TProperty> tPropertySelector, Func<T, TProperty> tPropertyTwoSelector) =>
-        builder.Must(t => predicate(tPropertySelector(t), tPropertyTwoSelector(t))).WithPropertyMessage(property);
+    public static IRuleBuilderOptions<RuleBase, TValueObject> NotNullOrEmpty<RuleBase, TValueObject, TEntity>(
+        this IRuleBuilder<RuleBase, TValueObject> builder, string? name) where TValueObject : IValueObject<TEntity, EntityResult<TValueObject>>
+        => builder.ChildRules(childValidator => childValidator.RuleFor(valueObject => valueObject.Value).NotNull().NotEmpty().OverrideAllMessages(name));
+ 
+    public static IRuleBuilderOptions<RuleBase, TValueObject> NotNullOrEmpty1<RuleBase, TValueObject, TEntity>(
+        this IRuleBuilder<RuleBase, TValueObject> builder, string? name) where TValueObject : IValueObject<TEntity, TValueObject> =>
+        builder.ChildRules(childValidator => childValidator.RuleFor(valueObject => valueObject.Value).NotNull().NotEmpty().OverrideAllMessages(name));
 
-    public static IRuleBuilderOptions<T, string> IsNullOrLengthInBounds<T>(this IRuleBuilder<T, string> builder, BookPropertiesNames propertyName)
-    {
-        var bound = BookPropertiesBounds.GetValueOrDefault(propertyName);
-        return (propertyName switch
+    private static IRuleBuilderOptions<RuleBase, TProperty> OverrideAllMessages<RuleBase, TProperty>(
+       this IRuleBuilderOptions<RuleBase, TProperty> builder, string? message = null)
+       => message is null ? builder : builder.OverridePropertyName(message);
+
+    public static IRuleBuilderOptions<RuleBase, StringObject> IsNullOrLengthInBounds<RuleBase, StringObject>(
+        this IRuleBuilder<RuleBase, StringObject> builder, string? name) where StringObject :
+        IStringObject<EntityResult<StringObject>> =>
+        (typeof(StringObject) switch
         {
-            BookPropertiesNames.Author or BookPropertiesNames.Title or BookPropertiesNames.Description or BookPropertiesNames.Author =>
-                builder.Length(bound.Min, bound.Max),
-            BookPropertiesNames.Isbn => builder.Length(bound.Max),
-            _ => builder.MaximumLength(0)
-        }).When(x  => x is not null);
-    }
+            var type when type == typeof(IsbnObject) => builder.ChildRules(childValidator =>
+                childValidator.RuleFor(childValidator => childValidator.Value).Length((stringObject) => stringObject.Bounds.Min)
+                .Unless(stringObject => stringObject.Value is null).OverrideAllMessages(name)),
+            _ => builder.ChildRules(childValidator => childValidator.RuleFor(valueObject => valueObject.Value.Length).
+                 LessThanOrEqualTo(x=>x.Bounds.Max).GreaterThanOrEqualTo(x => x.Bounds.Min).OverrideAllMessages(name).
+                 Unless(valueObject => valueObject.Value is null)),
+        }).OverrideAllMessages(name);
+
+    public static IRuleBuilderOptions<RuleBase, DateObject> IsNullOrLengthInBounds2<RuleBase, DateObject>(
+        this IRuleBuilder<RuleBase, DateObject> builder, string? message = null) where DateObject : IDateObject<EntityResult<DateObject>>
+        => builder.ChildRules(childValidator => childValidator.RuleFor(valueObject => valueObject.Value).GreaterThanOrEqualTo(x=>x.Bounds.Min).
+        LessThanOrEqualTo(x=>x.Bounds.Max).WithName(message));
 }
