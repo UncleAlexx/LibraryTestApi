@@ -1,13 +1,12 @@
 ﻿namespace Library.Domain.Common.Abstractions;
 
 public abstract class Entity<TId>(TId id) : IEquatable<Entity<TId>>, IEqualityOperators<Entity<TId>, Entity<TId>, bool>
-    where TId : notnull, IEquatable<TId>
+    where TId : notnull
 {
     public TId Id { get; set; } = id;
 
     public static bool operator == (Entity<TId>? one, Entity<TId>? other) => one is not null &&
-        other is not null && one.Id.Equals(default) is false &&
-        other.Id.Equals(default) is false && one.Id.Equals(other!.Id);
+        other is not null && one.Id is not null &&  other.Id is not null && one.Id.Equals(other!.Id);
 
     public static bool operator !=(Entity<TId>? one, Entity<TId>? other) => (one == other) is false;
 
