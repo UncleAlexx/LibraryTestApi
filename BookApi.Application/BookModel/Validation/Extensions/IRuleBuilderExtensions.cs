@@ -16,7 +16,7 @@ internal static class IRuleBuilderExtensions
         this IRuleBuilder<RuleBase, TValueObject> builder, string? name) where TValueObject : IValueObject<TEntity, EntityResult<TValueObject>>
         => builder.ChildRules(childValidator => childValidator.RuleFor(valueObject => valueObject.Value).NotNull().NotEmpty().OverrideAllMessages(name));
  
-    public static IRuleBuilderOptions<RuleBase, TValueObject> NotNullOrEmpty1<RuleBase, TValueObject, TEntity>(
+    public static IRuleBuilderOptions<RuleBase, TValueObject> IsNotNullOrEmpty<RuleBase, TValueObject, TEntity>(
         this IRuleBuilder<RuleBase, TValueObject> builder, string? name) where TValueObject : IValueObject<TEntity, TValueObject> =>
         builder.ChildRules(childValidator => childValidator.RuleFor(valueObject => valueObject.Value).NotNull().NotEmpty().OverrideAllMessages(name));
 
@@ -37,7 +37,7 @@ internal static class IRuleBuilderExtensions
                  Unless(valueObject => valueObject.Value is null)),
         }).OverrideAllMessages(name);
 
-    public static IRuleBuilderOptions<RuleBase, DateObject> IsNullOrLengthInBounds2<RuleBase, DateObject>(
+    public static IRuleBuilderOptions<RuleBase, DateObject> IsDateNullOrLengthInBounds<RuleBase, DateObject>(
         this IRuleBuilder<RuleBase, DateObject> builder, string? message = null) where DateObject : IDateObject<EntityResult<DateObject>>
         => builder.ChildRules(childValidator => childValidator.RuleFor(valueObject => valueObject.Value).GreaterThanOrEqualTo(x=>x.Bounds.Min).
         LessThanOrEqualTo(x=>x.Bounds.Max).WithName(message));
