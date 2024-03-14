@@ -21,7 +21,7 @@ public sealed class Stock : Entity<IdObject>
         in EntityResult<DescriptionObject> description, in EntityResult<GenreObject> genre, in EntityResult<TitleObject> title, 
         in BookIdObject bookId, in IdObject id)
     {
-        Stock instance = new(isbn.Entity, genre.Entity, title.Entity, author.Entity, description.Entity, id, bookId);
+        Stock instance = new(isbn.Entity!, genre.Entity, title.Entity!, author.Entity!, description.Entity, id, bookId);
         if (isbn.Successful && author.Successful && description.Successful && genre.Successful && title.Successful)
             return EntityResult<Stock>.Success(instance);
         return EntityResult<Stock>.Failed(instance);
