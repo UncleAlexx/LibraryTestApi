@@ -2,5 +2,5 @@
 
 internal sealed class IdObjectValidator : AbstractValidator<IdObject>
 {
-    public IdObjectValidator() => RuleFor(x => x).NotNullOrEmpty1<IdObject, IdObject, Guid>(IdObject.PropertyName);
+    public IdObjectValidator() => RuleFor(x => x).IsNotNullOrEmpty<IdObject, IdObject, Guid>(IdObject.PropertyName);
 }
