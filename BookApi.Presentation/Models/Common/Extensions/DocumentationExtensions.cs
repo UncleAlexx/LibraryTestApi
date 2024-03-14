@@ -1,6 +1,6 @@
 ﻿namespace Library.Presentation.Models.Common.Extensions;
 
-internal static class RouteHandlerBuilderExtensions
+internal static class DocumentationExtensions
 {
     public static void ConfigureDocumentation<TType>(this RouteHandlerBuilder endpoint, ushort[] codes,
         string defaultContentType = "application/problem+json")

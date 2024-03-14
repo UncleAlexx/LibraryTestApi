@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace Library.Presentation.Models.Common.Extensions;
+﻿namespace Library.Presentation.Models.Common.Extensions;
 
 internal static partial class EntityEndpointsFactory
 {
@@ -9,8 +7,8 @@ internal static partial class EntityEndpointsFactory
         result) => result.Successful? TypedResults.ValidationProblem(_emptyErrors) :
          TypedResults.ValidationProblem(type: nameof(ValidationException), errors:
              result.Errors!.GroupBy(failure => 
-             failure.PropertyName?[..(failure.PropertyName switch { var a when a.IndexOf('.') is - 1 => a.Length, var a => a.IndexOf('.')})] ??"", 
-             failure => failure.ErrorMessage??"").
+             failure.PropertyName?[..(failure.PropertyName switch { var a when a.IndexOf('.') is - 1 => a.Length, 
+                 var a => a.IndexOf('.')})] ??"", failure => failure.ErrorMessage??"").
              ToDictionary(keyGrouping => keyGrouping.Key, valueGrouping => valueGrouping.ToArray()));
 
     private async static Task<Results<TResult, ValidationProblem, ProblemHttpResult>> CreateRequestBase

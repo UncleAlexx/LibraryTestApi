@@ -1,6 +1,4 @@
-﻿using BookApi.Presentation.Contracts.Book.Common;
-
-namespace Library.Presentation.Contracts.Book.Common.Mappers;
+﻿namespace Library.Presentation.Contracts.Book.Common.Mappers;
 
 [Mapper]
 internal sealed partial class BookMapper : IBookMapper

@@ -1,4 +1,4 @@
-﻿namespace BookApi.Presentation.Contracts.Book.Common;
+﻿namespace Library.Presentation.Contracts.Book.Common;
 
 internal readonly struct BookToChangeView
 {
