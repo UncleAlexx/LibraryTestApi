@@ -1,6 +1,6 @@
 ﻿namespace Library.Domain.Book.Persistence.Dapper.QueriesParameters;
 
-public sealed class BookIdParameter : QueryParameter<BookIdParameter>
+internal sealed class BookIdParameter : QueryParameter<BookIdParameter, Guid>
 {
     public Guid? BookId { get; set; }
 
