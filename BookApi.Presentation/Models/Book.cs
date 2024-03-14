@@ -1,7 +1,4 @@
-﻿using BookApi.Presentation.Contracts.Book.Common;
-using Library.Presentation.Contracts.Book.Common;
-
-namespace Library.Presentation.Models;
+﻿namespace Library.Presentation.Models;
 
 internal static class BookModel
 {
@@ -42,8 +39,8 @@ internal static class BookModel
             new EntityResponse<Book>(DateTime.Now, "/GetByIsbn{isbn}", book), TypedResults.Ok)).
             ConfigureDocumentation<ProblemHttpResult>(_codes);
 
-        //command.RequireAuthorization("Admin");
-        //query.RequireAuthorization();
+        command.RequireAuthorization("Admin");
+        query.RequireAuthorization();
         return app;
     }
 }
