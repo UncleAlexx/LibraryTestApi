@@ -1,6 +1,4 @@
-﻿using BookApi.Infrastructure.Common;
-
-namespace Library.Infrastructure.Login.Library.Jwt;
+﻿namespace Library.Infrastructure.Login.Library.Jwt;
 
 public sealed class JwtBearerOptions
 {

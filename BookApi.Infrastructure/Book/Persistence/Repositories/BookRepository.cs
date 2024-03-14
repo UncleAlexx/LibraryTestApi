@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace Library.Infrastructure.Book.Persistence.Repositories;
+﻿namespace Library.Infrastructure.Book.Persistence.Repositories;
 
 public sealed class BookRepository(LibraryContext context,
     [FromKeyedServices(Databases.Library)] SqlConnection connection) : IBookRepository
