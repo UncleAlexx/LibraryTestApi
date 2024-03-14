@@ -32,4 +32,5 @@ global using Library.Domain.Book.Entities.Pocos;
 global using Library.Infrastructure.Book.Persistence.Constants.Library;
 global using Library.Infrastructure.Book.Persistence.Constants.Common;
 global using Library.Infrastructure.Login.Library.Jwt;
-
+global using  BookApi.Infrastructure.Login.Library.Jwt;
+global using Microsoft.AspNetCore.Builder;

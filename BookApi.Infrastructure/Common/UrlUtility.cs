@@ -1,4 +1,4 @@
-﻿namespace BookApi.Infrastructure.Common;
+﻿namespace Library.Infrastructure.Common;
 
 internal static class UrlUtility
 {
@@ -64,8 +64,8 @@ internal static class UrlUtility
     {
         if (searchChars.Length > source.Length)
             return [];
-        var a = NativeMemory.Alloc((nuint)source.Count(searchChars), sizeof(int));
-        Span<int> foundIndexes = MemoryMarshal.CreateSpan(ref Unsafe.AsRef<int>(a), source.Count(searchChars));
+        _findAllBufferPtr = NativeMemory.Alloc((nuint)source.Count(searchChars), sizeof(int));
+        Span<int> foundIndexes = MemoryMarshal.CreateSpan(ref Unsafe.AsRef<int>(_findAllBufferPtr), source.Count(searchChars));
         int foundIndexedIdx = 0;
         int charsToSkipOnFound = searchChars.Length - 1;
         bool found = true;

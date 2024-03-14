@@ -1,7 +1,4 @@
-﻿using BookApi.Infrastructure.Login.Library.Jwt;
-using Microsoft.AspNetCore.Builder;
-
-namespace Library.Infrastructure;
+﻿namespace Library.Infrastructure;
 
 public  static class DependencyInjection
 {
