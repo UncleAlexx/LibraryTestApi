@@ -2,6 +2,7 @@
 
 internal interface IValueObject<TEntity, TCreateReturnType>
 {
+    [MaybeNull]
     abstract static string PropertyName { get; }
     TEntity Value { get; init; }
     abstract string ErrorMessage { get; init; }

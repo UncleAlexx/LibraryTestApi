@@ -23,7 +23,7 @@ public sealed class Lending : Entity<IdObject>
     public static EntityResult<Lending> Create(in EntityResult<LendingDateObject> lendingDate, 
         in EntityResult<ReturnDateObject> returnDate, in BookIdObject bookId, in IdObject id)
     {
-        Lending lending = new(lendingDate.Entity, returnDate.Entity, id, bookId);
+        Lending lending = new(lendingDate.Entity!, returnDate.Entity!, id, bookId);
         if (lendingDate.Successful && returnDate.Successful && lending.AreDatesValid())
             return EntityResult<Lending>.Success(lending);
         return EntityResult<Lending>.Failed(lending);

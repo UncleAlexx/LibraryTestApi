@@ -1,4 +1,5 @@
 ﻿namespace Library.Domain.Common.Abstractions.ValueObjects;
+
 public abstract class ValueObject<TValue, TValueObject, TCreateType> :  IEquatable<ValueObject<TValue, TValueObject, TCreateType>>, 
     IEqualityOperators<ValueObject<TValue, TValueObject, TCreateType>, ValueObject<TValue, TValueObject, TCreateType>, bool>,
     IValueObject<TValue, TCreateType> 
@@ -18,7 +19,7 @@ public abstract class ValueObject<TValue, TValueObject, TCreateType> :  IEquatab
 
     protected ValueObject(in TValue value, in bool success = true) => (ErrorMessage, Value) = (success? "" : 
         ErrorMessage, value);
-
+    [MaybeNull]
     public static string PropertyName { get; }
     [JsonIgnore]
     public abstract string ErrorMessage { get; init; }
