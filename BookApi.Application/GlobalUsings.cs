@@ -7,9 +7,7 @@ global using Microsoft.Extensions.DependencyInjection;
 global using FluentValidation;
 global using Library.Application.BookModel.Behaviors;
 global using Library.Application.Common.Abstractions.Handlers;
-global using Library.Infrastructure.Login.Library.Jwt;
 global using Library.Domain.Common.Results.ResultsKind;
-global using Library.Application.Book.Validation.Constants;
 global using Library.Application.Book.Validation.Extensions;
 global using Library.Application.Common.Abstractions.Requests;
 global using Library.Domain.Common.Enums;
@@ -23,5 +21,6 @@ global using ValidationResult = FluentValidation.Results.ValidationResult;
 global using Library.Application.Book.Validators;
 global using Library.Domain.Book.Entities;
 global using Library.Domain.Common.ValueObjects.Interfaces;
+global using Library.Infrastructure.Login.Library.Jwt;
 global using Library.Domain.Book.ValueObjects.Lending;
 [assembly: InternalsVisibleTo("BookApi.Presentation")]

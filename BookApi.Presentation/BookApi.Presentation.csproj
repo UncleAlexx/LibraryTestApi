@@ -20,8 +20,8 @@
     <Reference Include="BookApi.Domain">
       <HintPath>..\BookApi.Domain\bin\Debug\net8.0\BookApi.Domain.dll</HintPath>
     </Reference>
-    <Reference Include="BookApi.Infrastructure">
-      <HintPath>..\BookApi.Infrastructure\bin\Debug\net8.0\BookApi.Infrastructure.dll</HintPath>
+    <Reference Include="BookApi.Presentation">
+      <HintPath>bin\Release\net8.0\BookApi.Presentation.dll</HintPath>
     </Reference>
   </ItemGroup>
 

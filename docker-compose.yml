@@ -11,7 +11,7 @@ services:
         MSSQL_PID: "Standard" 
 
   bookapi:
-    image: ${DOCKER_REGISTRY-}bookapi
+    image: "bookapi"
     build:
       context: .
       dockerfile: "BookApi/Dockerfile"
@@ -20,5 +20,4 @@ services:
     depends_on:
     - SqlServer
     environment:
-       Library: "Data Source=SqlServer;Initial Catalog=Library;User ID = SA;Password=password@12345$;Encrypt=False;Trust Server Certificate=True"
-    
+       Library: "Data Source=SqlServer;Initial Catalog=master;User ID = SA;Password=password@12345$;Encrypt=False;Trust Server Certificate=True"

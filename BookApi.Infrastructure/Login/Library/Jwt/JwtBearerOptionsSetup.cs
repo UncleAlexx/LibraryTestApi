@@ -1,4 +1,4 @@
-﻿namespace BookApi.Infrastructure.Login.Library.Jwt;
+﻿namespace Library.Infrastructure.Login.Library.Jwt;
 
 internal class JwtBearerOptionsSetup(IConfiguration manager) : IConfigureOptions<JwtBearerOptions>
 {

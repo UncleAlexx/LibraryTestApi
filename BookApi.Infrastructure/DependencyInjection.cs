@@ -51,8 +51,12 @@ public static class DependencyInjection
     private static IServiceCollection AddRepositories(this IServiceCollection services) =>
         services.AddScoped<IBookRepository, BookRepository>();
 
-    public static IServiceCollection AddDbContexts(this IServiceCollection services) =>
-        services.AddSqlServer<LibraryContext>(Environment.GetEnvironmentVariable(nameof(Library)));
+    public static IServiceCollection AddDbContexts(this IServiceCollection services)
+    {
+        System.Diagnostics.Debug.WriteLine(Environment.GetEnvironmentVariable(nameof(Library)));
+        return services.AddSqlServer<LibraryContext>(Environment.GetEnvironmentVariable(nameof(Library)));
+
+    }
 
     private static IServiceCollection AddUnitsOfWork(this IServiceCollection services) =>
         services.AddScoped<IUnitOfWork, LibraryUnitOfWork>();

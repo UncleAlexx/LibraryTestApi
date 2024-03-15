@@ -27,21 +27,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Reference Include="BookApi.Application">
-	    <HintPath>..\BookApi.Application\bin\Debug\net8.0\BookApi.Application.dll</HintPath>
-	  </Reference>
-	  <Reference Include="BookApi.Domain">
-	    <HintPath>..\BookApi.Domain\bin\Debug\net8.0\BookApi.Domain.dll</HintPath>
-	  </Reference>
-	  <Reference Include="BookApi.Infrastructure">
-	    <HintPath>..\BookApi.Infrastructure\bin\Debug\net8.0\BookApi.Infrastructure.dll</HintPath>
-	  </Reference>
-	  <Reference Include="BookApi.Presentation">
-	    <HintPath>..\BookApi.Presentation\bin\Debug\net8.0\BookApi.Presentation.dll</HintPath>
-	  </Reference>
+	  <Folder Include="Properties\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Properties\" />
+	  <Reference Include="BookApi.Application">
+	    <HintPath>..\BookApi.Application\bin\Release\net8.0\BookApi.Application.dll</HintPath>
+	  </Reference>
+	  <Reference Include="BookApi.Domain">
+	    <HintPath>..\BookApi.Domain\bin\Release\net8.0\BookApi.Domain.dll</HintPath>
+	  </Reference>
+	  <Reference Include="BookApi.Infrastructure">
+	    <HintPath>..\BookApi.Infrastructure\bin\Release\net8.0\BookApi.Infrastructure.dll</HintPath>
+	  </Reference>
+	  <Reference Include="BookApi.Presentation">
+	    <HintPath>..\BookApi.Presentation\bin\Release\net8.0\BookApi.Presentation.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 </Project>

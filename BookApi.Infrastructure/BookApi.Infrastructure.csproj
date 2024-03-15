@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <Reference Include="BookApi.Domain">
-      <HintPath>..\BookApi.Domain\bin\Debug\net8.0\BookApi.Domain.dll</HintPath>
+      <HintPath>..\BookApi.Domain\bin\Release\net8.0\BookApi.Domain.dll</HintPath>
     </Reference>
   </ItemGroup>
 
