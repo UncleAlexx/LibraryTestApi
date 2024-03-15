@@ -21,8 +21,9 @@ public static class DependencyInjection
                 Name = "Authorization",
                 Type = SecuritySchemeType.Http,
                 BearerFormat = "JWT",
-                Scheme = "Bearer"
+                Scheme = "Bearer",
             });
+
             swaggerOptions.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {

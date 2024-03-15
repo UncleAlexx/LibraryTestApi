@@ -25,9 +25,9 @@ internal static class BookModel
             new AddResponse<Book>(DateTime.Now, "/Add", x), TypedResults.Created, "")).
             ConfigureDocumentation<ProblemHttpResult>(_codes);
 
-        query.MapGet("/GetAll", async Task<Results<Ok<EntitiesResponse<Book>>, ProblemHttpResult>> (ISender sender, HttpRequest request) => 
-        await EntityEndpointsFactory.CreateRequest(sender, new GetAll(), books => new EntitiesResponse<Book>(DateTime.Now, "/GetAll",
-        books), TypedResults.Ok)).ConfigureDocumentation<EntitiesResponse<Book>>(_codes);
+        query.MapGet("/GetAll", async Task<Results<Ok<EntitiesResponse<Book>>, ProblemHttpResult>> (ISender sender, HttpRequest 
+            request) => await EntityEndpointsFactory.CreateRequest(sender, new GetAll(), books => new EntitiesResponse<Book>(
+                DateTime.Now, "/GetAll", books), TypedResults.Ok)).ConfigureDocumentation<EntitiesResponse<Book>>(_codes);
 
         query.MapGet("/GetById{bookId}", async Task<Results<Ok<EntityResponse<Book>>, ValidationProblem, ProblemHttpResult>> 
             (Guid bookId, ISender sender) => await EntityEndpointsFactory.CreateRequest(sender, new GetById(bookId), book => 

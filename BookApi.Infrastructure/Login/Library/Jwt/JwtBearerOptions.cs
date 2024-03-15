@@ -1,4 +1,6 @@
-﻿namespace Library.Infrastructure.Login.Library.Jwt;
+﻿using System.Net;
+
+namespace Library.Infrastructure.Login.Library.Jwt;
 
 public sealed class JwtBearerOptions
 {
@@ -11,5 +13,5 @@ public sealed class JwtBearerOptions
     [Required, MaybeNull] public required string ValidIssuer { get; init; }
     [Required, MaybeNull] public required string ValidAudience { get; init; }
     [Required, MaybeNull] public required string IssuerSigningKey { get => _issuerSigningKey; 
-        init => _issuerSigningKey = UrlUtility.Decode(value); }
+        init => _issuerSigningKey = WebUtility.UrlEncode(value)!.Replace("%2B", "+"); }
 }

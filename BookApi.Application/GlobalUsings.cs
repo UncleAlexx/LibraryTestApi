@@ -9,7 +9,6 @@ global using Library.Application.BookModel.Behaviors;
 global using Library.Application.Common.Abstractions.Handlers;
 global using Library.Infrastructure.Login.Library.Jwt;
 global using Library.Domain.Common.Results.ResultsKind;
-global using Library.Application.Book.Validation.Constants;
 global using Library.Application.Book.Validation.Extensions;
 global using Library.Application.Common.Abstractions.Requests;
 global using Library.Domain.Common.Enums;
