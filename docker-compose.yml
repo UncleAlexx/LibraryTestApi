@@ -1,0 +1,24 @@
+version: '3.4'
+services:
+  SqlServer:
+    container_name: "LibraryDb"
+    image: "mcr.microsoft.com/mssql/server"
+    ports: 
+    - "1433:1433"
+    environment:
+        ACCEPT_EULA: "Y"
+        SA_PASSWORD: "password@12345$"
+        MSSQL_PID: "Standard" 
+
+  bookapi:
+    image: ${DOCKER_REGISTRY-}bookapi
+    build:
+      context: .
+      dockerfile: "BookApi/Dockerfile"
+    ports:  
+        - "8081:8081"
+    depends_on:
+    - SqlServer
+    environment:
+       Library: "Data Source=SqlServer;Initial Catalog=Library;User ID = SA;Password=password@12345$;Encrypt=False;Trust Server Certificate=True"
+    
