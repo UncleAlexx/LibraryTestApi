@@ -1,6 +1,7 @@
 ﻿global using BookAggregate = Library.Domain.Book.Book;
 global using JwtBearerOptions = Library.Infrastructure.Login.Library.Jwt.JwtBearerOptions;
 global using Library.Infrastructure.Login.Library;
+global using System.ComponentModel.DataAnnotations;
 global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.AspNetCore.Authorization;
 global using Library.Domain.Common.Persistence.Dapper.Abstractions;
@@ -11,7 +12,6 @@ global using Library.Infrastructure.Book.Persistence.Repositories;
 global using Microsoft.EntityFrameworkCore;
 global using Library.Infrastructure.Book.Persistence.Library;
 global using Library.Domain.Common.Enums;
-global using System.ComponentModel.DataAnnotations;
 global using System.Diagnostics.CodeAnalysis;
 global using Microsoft.Data.SqlClient;
 global using Library.Domain.Book.Entities;

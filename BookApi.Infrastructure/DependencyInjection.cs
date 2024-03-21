@@ -9,8 +9,8 @@ public static class DependencyInjection
         using (var scope = builder.Services.BuildServiceProvider().CreateScope())
         {
             var options = scope.ServiceProvider.GetRequiredService<IOptions<JwtBearerOptions>>().Value;
-            builder.Services.AddAuth(options).AddAuthorizationPolicies(options).AddUnitsOfWork().AddRepositories().AddDbContexts().
-            AddKeyedSqlConnections().AddSingleton<JwtTokenFactory>();
+            builder.Services.AddAuth(options).AddAuthorizationPolicies(options).AddUnitsOfWork().AddRepositories().
+                AddDbContexts().AddKeyedSqlConnections().AddSingleton<JwtTokenFactory>();
         }
         return builder;
     }
