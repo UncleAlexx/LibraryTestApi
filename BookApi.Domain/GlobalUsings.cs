@@ -8,6 +8,7 @@ global using Library.Domain.Common.Results.Interfaces;
 global using FluentValidation.Results;
 global using System.Collections.ObjectModel;
 global using System.Buffers;
+global using System.Diagnostics;
 global using System.Runtime.InteropServices;
 global using System.Numerics;
 global using Library.Domain.Common.Persistence.Dapper.Abstractions;
