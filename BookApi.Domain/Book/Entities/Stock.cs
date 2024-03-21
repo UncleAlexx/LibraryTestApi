@@ -9,7 +9,6 @@ public sealed class Stock : Entity<IdObject>
 
     public BookIdObject BookId { get; private set; }
 
-    [JsonIgnore]
     public Book? Book { get; private set; }
     public required IsbnObject Isbn { get; set; }
     public required TitleObject Title { get; set; }

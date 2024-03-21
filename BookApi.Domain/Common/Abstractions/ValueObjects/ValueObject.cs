@@ -1,8 +1,8 @@
 ﻿namespace Library.Domain.Common.Abstractions.ValueObjects;
 
-public abstract class ValueObject<TValue, TValueObject, TCreateType> :  IEquatable<ValueObject<TValue, TValueObject, TCreateType>>, 
-    IEqualityOperators<ValueObject<TValue, TValueObject, TCreateType>, ValueObject<TValue, TValueObject, TCreateType>, bool>,
-    IValueObject<TValue, TCreateType> 
+public abstract class ValueObject<TValue, TValueObject, TCreateType> :  IEquatable<ValueObject<TValue, TValueObject, 
+    TCreateType>>, IEqualityOperators<ValueObject<TValue, TValueObject, TCreateType>, ValueObject<TValue, TValueObject,
+    TCreateType>, bool>, IValueObject<TValue, TCreateType> 
     where TValueObject : ValueObject<TValue, TValueObject, TCreateType> where TValue : IEquatable<TValue>
 {
     protected private static readonly ConstructorInfo TInstanceCtor = typeof(TValueObject).
@@ -19,28 +19,30 @@ public abstract class ValueObject<TValue, TValueObject, TCreateType> :  IEquatab
 
     protected ValueObject(in TValue value, in bool success = true) => (ErrorMessage, Value) = (success? "" : 
         ErrorMessage, value);
+
     [MaybeNull]
     public static string PropertyName { get; }
     [JsonIgnore]
     public abstract string ErrorMessage { get; init; }
-
     public TValue Value { get; init; }
 
     public static TCreateType Create(in TValue value) => _createBaseMethod(value);
 
     protected private static TCreateType CreateBase(in TValue value) => throw new NotImplementedException();
 
-    public override string ToString() => $"{Value}";
+    public override sealed string ToString() => $"{Value}";
 
-    public override int GetHashCode() => Value.GetHashCode();
+    public override sealed int GetHashCode() => Value.GetHashCode();
 
-    public override bool Equals(object? obj) => obj is ValueObject<TValue, TValueObject, TCreateType> other && other == this;
+    public override sealed bool Equals(object? obj) => obj is ValueObject<TValue, TValueObject, TCreateType> 
+        other && other == this;
 
     public bool Equals(ValueObject<TValue, TValueObject, TCreateType>? other) => other == this;
 
-    public static bool operator == (ValueObject<TValue, TValueObject, TCreateType>? left, ValueObject<TValue, TValueObject, TCreateType>?
-        right) => (left, right) is not (null, null) and not ({ Value: null }, { Value: null }) && left!.Value!.Equals(right!.Value);
+    public static bool operator == (ValueObject<TValue, TValueObject, TCreateType>? left, 
+        ValueObject<TValue, TValueObject, TCreateType>? right) => (left, right) is not (null, null)
+        and not ({ Value: null }, { Value: null }) && left!.Value!.Equals(right!.Value);
 
-    public static bool operator !=(ValueObject<TValue, TValueObject, TCreateType>? left, ValueObject<TValue, TValueObject, TCreateType>?
-        right) => (left == right) is false;
+    public static bool operator !=(ValueObject<TValue, TValueObject, TCreateType>? left, 
+        ValueObject<TValue, TValueObject, TCreateType>? right) => (left == right) is false;
 }

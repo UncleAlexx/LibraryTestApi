@@ -6,6 +6,7 @@
 
 
 
+
 [assembly: SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>", Scope = "member", Target = "~M:Library.Domain.Book.ValueObjects.Lending.BookIdObject.#ctor(System.Guid@)")]
 [assembly: SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>", Scope = "member", Target = "~M:Library.Domain.Book.ValueObjects.Lending.ReturnDateObject.#ctor(System.DateTime@,System.Boolean@)")]
 [assembly: SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>", Scope = "member", Target = "~M:Library.Domain.Book.ValueObjects.Lending.LendingDateObject.#ctor(System.DateTime@,System.Boolean@)")]
@@ -32,3 +33,4 @@
 [assembly: SuppressMessage("Usage", "CA2260:Use correct type parameter", Justification = "<Pending>", Scope = "namespace", Target = "~N:Library.Domain.Common.Abstractions")]
 [assembly: SuppressMessage("Usage", "CA2260:Use correct type parameter", Justification = "<Pending>", Scope = "namespace", Target = "~N:Library.Domain.Common.Abstractions")]
 [assembly: SuppressMessage("Usage", "CA2260:Use correct type parameter", Justification = "<Pending>", Scope = "type", Target = "~T:Library.Domain.Book.Book")]
+[assembly: SuppressMessage("Usage", "CA2260:Use correct type parameter", Justification = "<Pending>", Scope = "namespace", Target = "~N:Library.Domain.Common.Abstractions")]

@@ -1,13 +1,12 @@
 ﻿namespace Library.Domain.Common.Abstractions.ValueObjects;
 
-public abstract class DateObject<TDateObject> : ValueObject<DateTime, TDateObject, EntityResult<TDateObject>>,
+public abstract class DateObject<TDateObject>(in DateTime value, in bool success = true) : 
+    ValueObject<DateTime, TDateObject, EntityResult<TDateObject>>(value, success),
     IDateObject<EntityResult<TDateObject>> where TDateObject : DateObject<TDateObject>
 {
-    protected DateObject(in DateTime value, in bool success = true) : base(value, success) { }
-
     [JsonIgnore]
     public override string ErrorMessage { get; init; } = "";
-    [JsonIgnore]    
+    [JsonIgnore]
     public abstract Bounds<DateTime> Bounds { get; }
 
     protected static new EntityResult<TDateObject> CreateBase(in DateTime value)

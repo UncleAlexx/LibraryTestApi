@@ -29,8 +29,9 @@ public abstract class StringObject<TStringObject> : ValueObject<string, TStringO
     protected private static new EntityResult<TStringObject> CreateBase(in string value)
     {
         var success = TInstance(value);
-        return success.IsMatch() && (success.Default && success.Value is null || success.Bounds.InRange(value.Length)) ?
-            EntityResult<TStringObject>.Success(success) : EntityResult<TStringObject>.Failed(TInstance(value!, false));
+        return success.IsMatch() && (success.Default && success.Value is null || 
+            success.Bounds.InRange(value.Length)) ? EntityResult<TStringObject>.Success(success) : 
+            EntityResult<TStringObject>.Failed(TInstance(value!, false));
     }
 }
 
