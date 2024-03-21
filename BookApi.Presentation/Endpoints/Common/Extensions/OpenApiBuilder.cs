@@ -1,4 +1,4 @@
-﻿namespace Library.Presentation.Models.Common.Extensions;
+﻿namespace Library.Presentation.Endpoints.Common.Extensions;
 
 internal static class OpenApiBuilder
 {

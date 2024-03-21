@@ -1,4 +1,4 @@
-﻿namespace Library.Presentation.Models.Common.Constants;
+﻿namespace Library.Presentation.Endpoints.Common.Constants;
 
 internal static class OpenApiConstants
 {

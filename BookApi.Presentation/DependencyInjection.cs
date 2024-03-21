@@ -1,6 +1,4 @@
-﻿using Library.Presentation.Models;
-
-namespace Library.Presentation;
+﻿namespace Library.Presentation;
 
 public static class DependencyInjection
 {
