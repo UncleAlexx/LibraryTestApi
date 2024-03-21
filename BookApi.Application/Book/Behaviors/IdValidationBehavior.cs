@@ -1,4 +1,4 @@
-﻿namespace Library.Application.BookModel.Behaviors;
+﻿namespace Library.Application.Book.Behaviors;
 
 internal sealed class IdValidationBehavior<TRequest, TResponse>(IValidator<IdObject> validator) : 
     IPipelineBehavior<TRequest, IResult<BookView>> where TRequest : IIdValidatable

@@ -1,15 +1,19 @@
-﻿namespace Library.Presentation.Models.Common.Extensions;
+﻿namespace Library.Presentation.Endpoints.Common.Extensions;
 
 internal static partial class EntityEndpointsFactory
 {
     private static readonly Type _messageResult = typeof(MessageResult<>);
-    private static ValidationProblem CreateValidationProblem<TResultType, TRequestResult>(ValidationResult<TResultType> 
-        result) => result.Successful? TypedResults.ValidationProblem(_emptyErrors) :
+    private static ValidationProblem CreateValidationProblem<TResultType, TRequestResult>(ValidationResult<TResultType>
+        result) => result.Successful ? TypedResults.ValidationProblem(_emptyErrors) :
          TypedResults.ValidationProblem(type: nameof(ValidationException), errors:
-             result.Errors!.GroupBy(failure => 
-             failure.PropertyName?[..(failure.PropertyName switch { var a when a.IndexOf('.') is - 1 => a.Length, 
-                 var a => a.IndexOf('.')})] ??"", failure => failure.ErrorMessage??"").
-             ToDictionary(keyGrouping => keyGrouping.Key, valueGrouping => valueGrouping.ToArray()));
+         result.Errors!.GroupBy(failure => (failure?.PropertyName switch
+         {
+            null => null,
+            var propNameWithoutDot when propNameWithoutDot.IndexOf('.') is -1 => propNameWithoutDot,
+            _ => failure.PropertyName.AsSpan()[..failure.PropertyName.IndexOf('.')].ToString(),
+         }) ?? "",
+         failure => failure.ErrorMessage ?? "").
+         ToDictionary(keyGrouping => keyGrouping.Key, valueGrouping => valueGrouping?.ToArray() ?? []));
 
     private async static Task<Results<TResult, ValidationProblem, ProblemHttpResult>> CreateRequestBase
         <TResultType, TRequestResult, TResult, TSelectorParameter>(ISender sender, IGeneric<TResultType, TRequestResult> query, 

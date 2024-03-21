@@ -1,4 +1,4 @@
-﻿namespace Library.Presentation.Models;
+﻿namespace Library.Presentation.Endpoints;
 
 internal static class Login
 {

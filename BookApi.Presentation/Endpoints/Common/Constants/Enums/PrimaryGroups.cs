@@ -1,4 +1,4 @@
-﻿namespace Library.Presentation.Models.Common.Constants.Enums;
+﻿namespace Library.Presentation.Endpoints.Common.Constants.Enums;
 
 internal enum PrimaryGroups : byte
 {

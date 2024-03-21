@@ -1,4 +1,4 @@
-﻿namespace Library.Application.BookModel.Behaviors;
+﻿namespace Library.Application.Book.Behaviors;
 
 internal sealed class PersistenceBehavior<T, TRequest>(IUnitOfWork unitOfWork) : 
     IPipelineBehavior<T, IResult<BookView>> where T : ICommand<BookView, IResult<BookView>>
