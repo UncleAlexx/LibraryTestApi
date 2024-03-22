@@ -1,4 +1,6 @@
-﻿namespace Library.Infrastructure.Book.Persistence.Repositories;
+﻿using BookApi.Infrastructure.Book.Persistence;
+
+namespace Library.Infrastructure.Book.Persistence.Repositories;
 
 public sealed class BookRepository(LibraryContext context,
     [FromKeyedServices(Databases.Library)] SqlConnection connection) : IBookRepository

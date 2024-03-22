@@ -1,4 +1,4 @@
-﻿namespace Library.Infrastructure.Book.Persistence.Library;
+﻿namespace BookApi.Infrastructure.Book.Persistence;
 
 public sealed class LibraryUnitOfWork(LibraryContext context) : IUnitOfWork
 {
