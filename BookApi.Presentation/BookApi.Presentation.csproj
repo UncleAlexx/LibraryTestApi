@@ -15,10 +15,10 @@
 
   <ItemGroup>
     <Reference Include="BookApi.Application">
-      <HintPath>..\BookApi.Application\bin\Debug\net8.0\BookApi.Application.dll</HintPath>
+      <HintPath>..\BookApi.Application\bin\Release\net8.0\BookApi.Application.dll</HintPath>
     </Reference>
     <Reference Include="BookApi.Domain">
-      <HintPath>..\BookApi.Domain\bin\Debug\net8.0\BookApi.Domain.dll</HintPath>
+      <HintPath>..\BookApi.Domain\bin\Release\net8.0\BookApi.Domain.dll</HintPath>
     </Reference>
     <Reference Include="BookApi.Presentation">
       <HintPath>bin\Release\net8.0\BookApi.Presentation.dll</HintPath>
