@@ -1,10 +1,9 @@
 ﻿namespace Library.Domain.Common.Abstractions.ValueObjects;
 
-public abstract class StringObject<TStringObject> : ValueObject<string, TStringObject, EntityResult<TStringObject>>,
+public abstract class StringObject<TStringObject>(in string value, in bool success) : 
+    ValueObject<string, TStringObject, EntityResult<TStringObject>>(value, success),
     IStringObject<EntityResult<TStringObject>> where TStringObject : StringObject<TStringObject>
 {
-    protected private StringObject(in string value, in bool success) : base(value, success) { }
-
     public abstract Bounds<int> Bounds { get; }
     [JsonIgnore]
     public virtual bool Default { get; } = false;
@@ -29,8 +28,9 @@ public abstract class StringObject<TStringObject> : ValueObject<string, TStringO
     protected private static new EntityResult<TStringObject> CreateBase(in string value)
     {
         var success = TInstance(value);
-        return success.IsMatch() && (success.Default && success.Value is null || success.Bounds.InRange(value.Length)) ?
-            EntityResult<TStringObject>.Success(success) : EntityResult<TStringObject>.Failed(TInstance(value!, false));
+        return success.IsMatch() && (success.Default && success.Value is null || 
+            success.Bounds.InRange(value.Length)) ? EntityResult<TStringObject>.Success(success) : 
+            EntityResult<TStringObject>.Failed(TInstance(value!, optionalArg: false));
     }
 }
 

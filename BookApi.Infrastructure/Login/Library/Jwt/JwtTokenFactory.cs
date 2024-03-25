@@ -1,10 +1,11 @@
-﻿namespace Library.Infrastructure.Login.Library.Jwt;
+﻿using System.Diagnostics;
+
+namespace Library.Infrastructure.Login.Library.Jwt;
 
 public sealed class JwtTokenFactory
 {
     private readonly SigningCredentials _signingCredentials;
     private readonly JwtTokenOptions? _tokenOptions;
-
     private static readonly Claim[] _userClaims = [new(LibraryUserClaimType.Name, ""), new(LibraryUserClaimType.Email, ""), 
         new(LibraryUserClaimType.Password, ""), new(LibraryUserClaimType.Secret, "")];
     private static readonly JwtSecurityTokenHandler _tokenHandler = new();

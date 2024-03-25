@@ -5,7 +5,7 @@ global using MediatR;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.Extensions.DependencyInjection;
 global using FluentValidation;
-global using Library.Application.BookModel.Behaviors;
+global using Library.Application.Book.Behaviors;
 global using Library.Application.Common.Abstractions.Handlers;
 global using Library.Domain.Common.Results.ResultsKind;
 global using Library.Application.Book.Validation.Extensions;

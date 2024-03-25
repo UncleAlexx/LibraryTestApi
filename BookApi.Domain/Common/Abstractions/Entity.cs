@@ -8,7 +8,7 @@ public abstract class Entity<TId>(TId id) : IEquatable<Entity<TId>>, IEqualityOp
     public static bool operator == (Entity<TId>? one, Entity<TId>? other) => one is not null &&
         other is not null && one.Id is not null &&  other.Id is not null && one.Id.Equals(other!.Id);
 
-    public static bool operator !=(Entity<TId>? one, Entity<TId>? other) => (one == other) is false;
+    public static bool operator != (Entity<TId>? one, Entity<TId>? other) => (one == other) is false;
 
     public bool Equals(Entity<TId>? other) => other! == this;
 

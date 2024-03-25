@@ -1,4 +1,5 @@
-﻿using static System.Net.Mime.MediaTypeNames;
+﻿using System.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Library.Application.Common.Validation.Extensions;
 
@@ -19,6 +20,7 @@ internal static class ValidationResultExtensions
         }
         catch(Exception e)
         {
+            Trace.WriteLine(e);
             return entity;
         }
     }

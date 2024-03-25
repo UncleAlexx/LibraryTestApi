@@ -4,9 +4,9 @@ public static class DependencyInjection
 {
     public static WebApplicationBuilder AddWebApi(this WebApplicationBuilder builder)
     {
-        builder.Services.Configure<JsonOptions>(options =>
-            options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+        builder.Services.Configure<JsonOptions>(options => options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
         builder.AddSwaggerOptions();
+        builder.Services.AddEndpointsApiExplorer();
         return builder;
     }
 
@@ -23,6 +23,7 @@ public static class DependencyInjection
                 BearerFormat = "JWT",
                 Scheme = "Bearer"
             });
+
             swaggerOptions.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {
