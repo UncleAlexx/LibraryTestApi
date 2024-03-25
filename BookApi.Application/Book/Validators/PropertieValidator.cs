@@ -18,6 +18,7 @@ internal sealed class PropertiesValidator : AbstractValidator<BookView>
             (LendingDateObject.PropertyName).IsDateNullOrLengthInBounds(LendingDateObject.PropertyName);
         RuleFor(book => book.Lending!.Return).NotNullOrEmpty<BookView, ReturnDateObject, DateTime>(ReturnDateObject.PropertyName).
             IsDateNullOrLengthInBounds(ReturnDateObject.PropertyName);
-        RuleFor(book => book.Lending).Must(x => x.AreDatesValid()).WithMessage(x => x.Lending!.Return.ErrorMessage).OverridePropertyName("ReturnDate");
+        RuleFor(book => book.Lending).Must(lending => lending!.AreDatesValid()).WithMessage(book => book.Lending!.Return.ErrorMessage).
+            OverridePropertyName(ReturnDateObject.PropertyName);
     }
 }
