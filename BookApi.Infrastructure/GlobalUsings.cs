@@ -8,6 +8,7 @@ global using BookApi.Infrastructure.Book.Persistence;
 global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.AspNetCore.Authorization;
 global using Library.Domain.Common.Persistence.Dapper.Abstractions;
+global using System.Reflection;
 global using BookApi.Infrastructure.Book.Persistence.Configurations.Abstractions;
 global using Library.Domain.Book.Persistence.Interfaces;
 global using Microsoft.Extensions.Configuration;

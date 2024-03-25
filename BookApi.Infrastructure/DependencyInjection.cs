@@ -6,12 +6,11 @@ public static class DependencyInjection
     {
         builder.Services.ConfigureOptions<JwtBearerOptionsSetup>().AddOptionsWithValidateOnStart<JwtBearerOptions>().
             ValidateDataAnnotations().ValidateOnStart();
-        using (var scope = builder.Services.BuildServiceProvider().CreateScope())
-        {
+        using var scope = builder.Services.BuildServiceProvider().CreateScope();
             var options = scope.ServiceProvider.GetRequiredService<IOptions<JwtBearerOptions>>().Value;
             builder.Services.AddAuth(options).AddAuthorizationPolicies(options).AddUnitsOfWork().AddRepositories().
                 AddDbContexts().AddKeyedSqlConnections().AddSingleton<JwtTokenFactory>();
-        }
+        
         return builder;
     }
 
@@ -51,12 +50,8 @@ public static class DependencyInjection
     private static IServiceCollection AddRepositories(this IServiceCollection services) =>
         services.AddScoped<IBookRepository, BookRepository>();
 
-    public static IServiceCollection AddDbContexts(this IServiceCollection services)
-    {
-        System.Diagnostics.Debug.WriteLine(Environment.GetEnvironmentVariable(nameof(Library)));
-        return services.AddSqlServer<LibraryContext>(Environment.GetEnvironmentVariable(nameof(Library)));
-
-    }
+    public static IServiceCollection AddDbContexts(this IServiceCollection services) =>
+        services.AddSqlServer<LibraryContext>(Environment.GetEnvironmentVariable(nameof(Library)));
 
     private static IServiceCollection AddUnitsOfWork(this IServiceCollection services) =>
         services.AddScoped<IUnitOfWork, LibraryUnitOfWork>();

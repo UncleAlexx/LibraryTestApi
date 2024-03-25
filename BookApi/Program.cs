@@ -1,6 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
-builder.AddWebApi().AddInfrastructure().AddApplication().AddPresentation();
-builder.Services.AddEndpointsApiExplorer();
+builder.AddInfrastructure().AddApplication().AddPresentation().AddWebApi();
 var app = builder.Build();
 app.MigrateDatabase();
 app.MapEndpoints().UseSwagger().UseSwaggerUI();

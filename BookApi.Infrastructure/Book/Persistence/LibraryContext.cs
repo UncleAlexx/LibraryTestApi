@@ -6,5 +6,6 @@ public sealed class LibraryContext(DbContextOptions<LibraryContext> options) : D
 
     public DbSet<BookAggregate> Books { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.HasDefaultSchema(Schema);
+    protected override void OnModelCreating(ModelBuilder modelBuilder) =>
+        modelBuilder.HasDefaultSchema(Schema).ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 }
