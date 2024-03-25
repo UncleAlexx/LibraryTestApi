@@ -9,13 +9,9 @@ public abstract class GuidObject<TGuidObject> : ValueObject<Guid, TGuidObject, T
         (TInstanceCtor, [typeof(Guid)])!;
     private static readonly MethodInfo _createUniqueBaseInfo = typeof(TGuidObject).GetMethod(nameof(CreateUniqueBase),
         BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.FlattenHierarchy)!;
-    private static readonly Func<TGuidObject> _createUniqueBaseMethod = 
-        Emitter.EmitCall<Func<TGuidObject>>(_createUniqueBaseInfo, [])!;
+    private static readonly Func<TGuidObject> _createUniqueBaseMethod = Emitter.EmitCall<Func<TGuidObject>>(_createUniqueBaseInfo, [])!;
 
-    protected private GuidObject(in Guid value) : base(value) { } 
-    
-    [JsonIgnore]
-    public sealed override string ErrorMessage { get; init; } = "";
+    protected private GuidObject(in Guid value) : base(value, true) { }
 
     public static TGuidObject CreateUnique() => _createUniqueBaseMethod();
 

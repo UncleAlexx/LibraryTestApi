@@ -6,6 +6,7 @@ public sealed class Lending : Entity<IdObject>
     private Lending(LendingDateObject lendingDate, ReturnDateObject @return, IdObject id, BookIdObject bookId) :
         base(id) => (LendingDate, Return, BookId) = (lendingDate, @return, bookId);
 
+    [JsonIgnore]
     public Book? Book { get; private set; }
     public BookIdObject BookId { get; private set; }
 

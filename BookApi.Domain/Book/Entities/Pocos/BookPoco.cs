@@ -1,6 +1,6 @@
 ﻿namespace Library.Domain.Book.Entities.Pocos;
 
-public sealed record BookPoco
+public sealed class BookPoco
 {
     public required string Isbn { get; init; }
     public required string Author { get; init; }

@@ -2,11 +2,14 @@
 
 public sealed partial class DescriptionObject : StringObject<DescriptionObject>
 {
-    private DescriptionObject(in string value, in bool success = true) : base(value, success) { }
+    private DescriptionObject(in string value, in bool success = true) : base(value,success) { }
 
-    public override sealed Bounds<int> Bounds { get; } = new Bounds<int>(20, 100); 
-    public override sealed bool Default { get; } = true; 
-    public override string ErrorMessage { get; init; } = ValidationMessages.DescriptionMessage;
+    [JsonIgnore]
+    public override sealed string ErrorMessage { get; init; } = ValidationMessages.DescriptionMessage;
+    [JsonIgnore]
+    public override sealed Bounds<int> Bounds { get; } = new Bounds<int>(20, 100);
+    [JsonIgnore]
+    public override sealed bool Default { get; } = true;
     public static new string PropertyName { get; } = "Description";
 
 
