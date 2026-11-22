@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Riok.Mapperly" Version="3.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BookApi.Application">
+      <HintPath>..\BookApi.Application\bin\Release\net8.0\BookApi.Application.dll</HintPath>
+    </Reference>
+    <Reference Include="BookApi.Domain">
+      <HintPath>..\BookApi.Domain\bin\Release\net8.0\BookApi.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="BookApi.Presentation">
+      <HintPath>bin\Release\net8.0\BookApi.Presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

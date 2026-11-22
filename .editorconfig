@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS9193: Argument should be a variable because it is passed to a 'ref readonly' parameter
+dotnet_diagnostic.CS9193.severity = none

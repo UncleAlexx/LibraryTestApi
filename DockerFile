@@ -1,0 +1,21 @@
+From mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER app
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
+
+From mcr.micorost.com/dotnet/sdk:8.0 as build
+ARG BUILD_CONFIGURATION=Debug
+WORKDIR 
+RUN dotnet restore
+COPY . .
+WORKDIR 
+
+From build as publish
+ARG Build_Configuration=Debug
+Run donet publish     -c
+
+From base as final
+WORKDIR /app
+copy
+ENTRYPOINT
